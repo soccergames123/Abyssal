@@ -1,0 +1,1452 @@
+featured,embed_url,embed_html,description,categories,title,thumbnail_url,category,tags,id,created_date,updated_date,created_by_id,created_by,is_sample
+"false","","<!DOCTYPE html>   <!-- Ultimate Game Stash file-->  <!-- For the regularly updating doc go to https://docs.google.com/document/d/1_FmH3BlSBQI7FGgAQL59-ZPe8eCxs35wel6JUyVaG8Q/ -->   <html lang=""en-us"">   <base href=""https://cdn.jsdelivr.net/gh/abisdbest/classroom.google.com@45b2d69c626dc365753f6922d2c48c4075683ef5/drive.google.com/escape%20road/""> <head> <meta charset=""utf-8""> <meta http-equiv=""Content-Type"" content=""text/html; charset=utf-8""> <meta name=""viewport"" content=""width=device-width, initial-scale=1.0, user-scalable=no""> <title>Escape Road</title> <link rel=""shortcut icon"" href=""icon.png""> <link rel=""stylesheet"" href=""TemplateData/style.css""> <script src=""https://cdn.jsdelivr.net/npm/eruda""></script> <script>eruda.init()</script> </head> <style>   @font-face {   font-family: myFirstFont;   src: url(Chainwhacks.otf);   }   #logo-canvas, body   {     font-family: myFirstFont;   } </style> <body class=""dark""> <div id=""unity-container"" class=""unity-desktop""><p style=""opacity: 0;position: absolute;"">_</p> <canvas id=""unity-canvas""></canvas> </div> <div id=""loading-cover"" style=""display:none;background: black;""> <div id=""unity-loading-bar""> <canvas id=""logo-canvas"" style=""position: absolute; background-color: black;""> <img src=""loading.png"" id=""ld_bg""> <img src=""car-icon.png"" id=""ld_car""> </canvas> </div> </div> <!-- /0a502697b99e36d322eeb8daf23bc8b8.data.unityweb"",       frameworkUrl: buildUrl + ""/f9b96a5188376a54aba0e08c0ed35ba8.js.unityweb"",       codeUrl: buildUrl + ""/7b28c6f059eabf99b5ee87d37b2df90c.wasm.unityweb"",       streamingAssetsUrl: "" --> <img id=""azlogo"" class=""az"" src=""az_logo.png""> <script type=""57480f3f31f76c75506c83a0-text/javascript"">     const container = document.querySelector(""#unity-container"");     const canvas = document.querySelector(""#unity-canvas"");     const loadingCover = document.querySelector(""#loading-cover"");     const fullscreenButton = document.querySelector(""#unity-fullscreen-button"");        const buildUrl = ""TemplateData"";     const loaderUrl = buildUrl + ""/loader.js"";     const config = {       dataUrl: buildUrl + ""/data.unityweb"",       frameworkUrl: buildUrl + ""/framework.js.unityweb"",       codeUrl: buildUrl + ""/wasm.unityweb"",       streamingAssetsUrl: ""StreamingAssets"",       companyName: ""1games.io"",       productName: ""Escape Road"",       productVersion: ""2.0"",     };                if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {       container.className = ""unity-mobile"";       config.devicePixelRatio = 1;     }          function delay(ms) {       return new Promise((resolve, reject) => {         setTimeout(() => {           resolve();         }, ms);       });     }     async function load() {        var az_logo = document.getElementById('azlogo');       az_logo.style.opacity = 0;       logo_loaded = true;      /* var t = new Date().getTime();       while (az_logo.style.opacity < 1) {         var delta = new Date().getTime() - t;         az_logo.style.opacity = delta / 1000;         await delay(20);       }       await delay(1000);*/       az_logo.style.display = 'none';       logo_loaded = false;              createUnityInstance(canvas, config, (progress) => {         logo_loading_percent = progress;         drawCanvas(progress);       }).then((unityInstance) => {         window.unityInstance = unityInstance;         setTimeout(() => {           loadingCover.style.display = ""none"";           logo_loaded = true;           window.focus();         }, 2000);       }).catch((message) => {         alert(message);       });     }      loadingCover.style.display = """";      var script = document.createElement(""script"");     script.src = loaderUrl;     script.onload = () => {       load();     };      // setTimeout(() => {     //     var progress = 0.5;     //     logo_loading_percent = progress;     //     drawCanvas(progress);     //   }, 1000);      // var progress = 0;     // setInterval(() => {     //   logo_loading_percent = progress;     //   drawCanvas(progress);     //   progress += 0.01;     // }, 30);       var logo_loaded = false;     var logo_loading_percent = 0;      window.onresize = () => {       // console.log('onresize');       drawCanvas(logo_loading_percent);     }     window.onload = () => {       // console.log('onload');       drawCanvas(logo_loading_percent);     }      var logo_canvas = document.getElementById(""logo-canvas"");     function drawCanvas(_percent = 0) {       if (logo_loaded) {         return;       }       resizeLogoCanvas();       var ctx = logo_canvas.getContext(""2d"");       var ld_bg = document.getElementById(""ld_bg"");       var ld_car = document.getElementById(""ld_car"");        var _sw = logo_canvas.width / 1920;       var _sh = logo_canvas.height / 1080;        if (_percent > 1) {         _percent = 1;       }        //bgbar       var bgbar_H = 86;       var bgbar_W = 1383;       //fillbar       var fillbar_H = 55;       var fillbar_W = 1345;       //Mask       var maskbar_H = 55;       var maskbar_W = 1350;       //bg_bar_mask       var bgbar_mask_H = 86;       var bgbar_mask_W = 1383;        var posshowbar_Y = 200;   //position loadingbar         var posbgbar_X = (1920 - bgbar_W) / 2; // center       var posbgbar_Y = posshowbar_Y;        var posfillbar_X = (1920 - fillbar_W) / 2;       var posfillbar_Y = posshowbar_Y - 15;        var posmaskbar_X = (1920 - maskbar_W) / 2;       var posmaskbar_Y = posshowbar_Y - 15;        var _fl = 0;       var _fl1 = posmaskbar_X + _percent * maskbar_W;        var _fw = maskbar_W - _percent * maskbar_W;        // console.log(`${logo_canvas.width} ${logo_canvas.height}`);       //background       ctx.drawImage(ld_bg, 0, 0, logo_canvas.width, logo_canvas.height);        //loading background       ctx.fillStyle = ""#977e21"";       var _lw = 700;       var _lh = 50;       ctx.fillRect((1920 - _lw) * 0.5 * _sw, (1080 - 150) * _sh, _lw * _sw, _lh * _sh);        //loading progress       ctx.fillStyle = ""#fad234"";       var _pad = 5;       var _pw = (_lw - _pad * 2);       var _ph = _lh - _pad * 2;       var _px = (1920 - _pw) * 0.5;       ctx.fillRect(_px * _sw, (1080 - 150 + _pad) * _sh, _pw * _percent * _sw, _ph * _sh);        //car       var _car_x = _px + _pw * _percent - 100;       if (_car_x < _px) {         _car_x = _px;       }      // ctx.drawImage(ld_car,  _car_x * _sw, (1080 - 190) * _sh, 100 * _sw, 42 * _sh);         ctx.font = ""18px myFirstFont"";       const match = /(?<value>\d+\.?\d*)/;       const setFontSize = (size) => ctx.font = ctx.font.replace(match, size);       setFontSize(35 * _sh);       ctx.textAlign = ""center"";       ctx.fillStyle = ""#fff"";       ctx.shadowColor = ""black"";       ctx.shadowOffsetY = 2;       var new_per = parseInt(_percent * 100);       ctx.fillText("""" + new_per + ""%"", logo_canvas.width / 2, logo_canvas.height / 2 + _sh * 425);     }     function resizeLogoCanvas() {       var _w = window.innerWidth;       var _h = window.innerHeight;       var _nw = _h * 16 / 9;       // console.log(`${_w} ${_h} ${_nw}`);       if (_nw <= _w) {         logo_canvas.width = _nw;         logo_canvas.height = _h;       }       else {         logo_canvas.width = _w;         logo_canvas.height = _w * 9 / 16;       }      }       document.body.appendChild(script);   </script> <script src=""https://www.gstatic.com/firebasejs/10.9.0/firebase-app-compat.js"" type=""57480f3f31f76c75506c83a0-text/javascript""></script> <script src=""https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore-compat.js"" type=""57480f3f31f76c75506c83a0-text/javascript""></script> <script src=""https://www.gstatic.com/firebasejs/10.9.0/firebase-auth-compat.js"" type=""57480f3f31f76c75506c83a0-text/javascript""></script> <script src=""https://www.gstatic.com/firebasejs/10.9.0/firebase-analytics-compat.js"" type=""57480f3f31f76c75506c83a0-text/javascript""></script> <script type=""57480f3f31f76c75506c83a0-module"">   // Import the functions you need from the SDKs you need   import { initializeApp } from ""https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js"";   import { getAnalytics } from ""https://www.gstatic.com/firebasejs/10.9.0/firebase-analytics.js"";   import { getAuth  } from ""https://www.gstatic.com/firebasejs/10.9.0/firebase-auth.js"";   // TODO: Add SDKs for Firebase products that you want to use   // https://firebase.google.com/docs/web/setup#available-libraries    // Your web app's Firebase configuration   // For Firebase JS SDK v7.20.0 and later, measurementId is optional   const firebaseConfig = {   apiKey: ""AIzaSyC2RwMfh0GMuQMtQdijjUo-MEffB4N9xVY"",   authDomain: ""escape-road-gm1.firebaseapp.com"",   projectId: ""escape-road-gm1"",   storageBucket: ""escape-road-gm1.appspot.com"",   messagingSenderId: ""713881704715"",   appId: ""1:713881704715:web:615cc93a73d9814b24ea0e"",   measurementId: ""G-E8C3TNJE0S"" }; window.dataLayer = window.dataLayer || []; window.gtag = function(){dataLayer.push(arguments);}  window.gtag(""config"", firebaseConfig.measurementId, {     cookie_domain: location.hostname,     cookie_flags: ""SameSite=None;Secure"", });   // Initialize Firebase    const app = firebase.initializeApp(firebaseConfig);   const auth = getAuth(app); </script> <script src=""rocket-loader.min.js"" data-cf-settings=""57480f3f31f76c75506c83a0-|49"" defer></script></body> </html>","Dont get caught","[""racing"",""action""]","Escape Road","https://cdn.jsdelivr.net/gh/freebuisness/covers@main/264.png","arcade","[]","69f51e2d6dc0e22a333ba717","2026-05-01T21:42:05.417000","2026-05-02T20:22:19.859000","69ee32c21259f0511987060d","elimcoen@gmail.com","false"
+"false","","<!DOCTYPE html>   <!-- Ultimate Game Stash file-->  <!-- For the regularly updating doc go to https://docs.google.com/document/d/1_FmH3BlSBQI7FGgAQL59-ZPe8eCxs35wel6JUyVaG8Q/ -->    <html lang=""en-us"" style=""height:100%; overflow:hidden""> <head>   <base href=""https://cdn.jsdelivr.net/gh/bubbls/UGS-Assets@79091a3feb921044b3597bd32cea7357b43e2d9c/indian-truck-simulator-3d-gh-pages/"">   <meta charset=""utf-8"">   <meta http-equiv=""Content-Type"" content=""text/html; charset=utf-8"">   <title>Unity WebGL Player | BlightBorne</title>   <style>     * {       margin: 0;       padding: 0;     }      body {       overflow: hidden;     }      #gameContainer canvas {       display:block;     }      div#webgl-content {       position: absolute;       top: 50%;       left: 50%;       -webkit-transform: translate(-50%, -50%);       transform: translate(-50%, -50%);     }      div#loadingBox {       width: 100%;       height: 0px;       position: absolute;       top: 50%;       margin-top: 137px;       text-align: center;     }      div#icon {       width: 300px;       height: 310px;       position: absolute;       top: 50%;       left: 50%;       margin-top: -185px;       margin-left: -150px;       background-image: url(""Template/Blight-Borne.jpg"");       background-repeat: no-repeat;       box-shadow: 1px 1px 5px #141414;     }      div#box {       width: 328px;       height: 367px;       position: absolute;       top: 50%;       left: 50%;       margin-top: -199px;       margin-left: -164px;       background: #222;       box-shadow: 1px 1px 5px #000;     }      div#bgBar {       display: none;       position: absolute;       width: 300px;       margin-left: -150px;       left: 50%;       height: 18px;       background-color: #882121;       box-shadow: 1px 1px 5px #111;     }      div#progressBar {       display: none;       left: 50%;       position: absolute;       margin-left: -150px;       width: 0px;       height: 18px;       background-color: #dc4241;     }      p#loadingInfo {       color: #fff;       letter-spacing: 1px;       position: absolute;       width: 100%;       font-family: sans-serif;       text-align: center;       top: 50%;       font-size: 11px;       font-weight: 500;       margin-top: 140px;       text-shadow: 0px 0px 5px #000;     }      div#spinner {       position: absolute;       height: 18px;       left: 50%;       margin-left: -150px;       width: 300px;       position: relative;       overflow: hidden;       background-color: #882121;       box-shadow: 1px 1px 5px #111;     }      div#spinner:before {       display: block;       position: absolute;       content: """";       width: 150%;       margin-left: -10px;       height: 10px;       background-color: #e85352;       transform: rotate(-5deg);       animation: loading 1s linear infinite;     }      @keyframes loading {       from {         top: -185%       }       to {         top: 225%       }     }   </style>     <script src=""Build/UnityLoader.js""></script>   <script>     window.mergedBlobUrls = {};      function mergeFiles(fileParts) {       return new Promise((resolve, reject) => {         let buffers = [];         function fetchPart(i) {           if (i >= fileParts.length) {             let mergedBlob = new Blob(buffers);             let mergedUrl = URL.createObjectURL(mergedBlob);             resolve(mergedUrl);             return;           }           fetch(fileParts[i])             .then(r => r.arrayBuffer())             .then(data => {               buffers.push(data);               fetchPart(i + 1);             })             .catch(reject);         }         fetchPart(0);       });     }      function getParts(file, start, end) {       let arr = [];       for (let i = start; i <= end; i++) {         arr.push(file + "".part"" + i);       }       return arr;     }      function resizeUnityContainer() {       var container = document.getElementById(""gameContainer"");       if (container) {         container.style.width = window.innerWidth + ""px"";         container.style.height = window.innerHeight + ""px"";       }     }      window.addEventListener('resize', resizeUnityContainer);      function UnityProgress(gameInstance, progress) {       var container = document.getElementById(""gameContainer"");       if (container) document.body.style.background = container.style.background;        if (!gameInstance.Module) {          return;       } else if (progress === ""complete"") {         document.getElementById(""loadingBox"").style.display = ""none"";         document.getElementById(""icon"").style.display = ""none"";         document.getElementById(""loadingInfo"").style.display = ""none"";         document.getElementById(""box"").style.display = ""none"";       } else if (progress === 1 || progress === ""preinit"") {         document.getElementById(""loadingInfo"").innerHTML = ""PROCESSING..."";         document.getElementById(""spinner"").style.display = ""inherit"";         document.getElementById(""bgBar"").style.display = ""none"";         document.getElementById(""progressBar"").style.display = ""none"";       } else if (progress > 0) {         document.getElementById(""progressBar"").style.width = 300 * progress + ""px""         document.getElementById(""loadingInfo"").innerHTML = Math.round(progress * 100) + ""%"";         document.getElementById(""spinner"").style.display = ""none"";         document.getElementById(""bgBar"").style.display = ""block"";         document.getElementById(""progressBar"").style.display = ""inherit"";       }     }      (function() {       var originalOpen = XMLHttpRequest.prototype.open;       XMLHttpRequest.prototype.open = function(method, url, ...args) {         for (let key in window.mergedBlobUrls) {           if (url.includes(key)) {             url = window.mergedBlobUrls[key];             break;           }         }         return originalOpen.call(this, method, url, ...args);       };     })();      window.addEventListener(""load"", function () {       fetch(""Build/indian_truck_gd_2_0_1.json"")         .then(r => r.json())         .then(config => {           return Promise.all([             mergeFiles(getParts(""Build/indian_truck_gd_2_0_1.data.unityweb"", 1, 2)),             mergeFiles(getParts(""Build/indian_truck_gd_2_0_1.wasm.code.unityweb"", 1, 1)),             mergeFiles(getParts(""Build/indian_truck_gd_2_0_1.wasm.framework.unityweb"", 1, 1))           ]).then(([dataUrl, wasmCodeUrl, wasmFrameworkUrl]) => {             window.mergedBlobUrls[""indian_truck_gd_2_0_1.data.unityweb""] = dataUrl;             window.mergedBlobUrls[""indian_truck_gd_2_0_1.wasm.code.unityweb""] = wasmCodeUrl;             window.mergedBlobUrls[""indian_truck_gd_2_0_1.wasm.framework.unityweb""] = wasmFrameworkUrl;              config.dataUrl = ""Build/indian_truck_gd_2_0_1.data.unityweb"";             config.wasmCodeUrl = ""Build/indian_truck_gd_2_0_1.wasm.code.unityweb"";             config.wasmFrameworkUrl = ""Build/indian_truck_gd_2_0_1.wasm.framework.unityweb"";              let blob = new Blob([JSON.stringify(config)], { type: ""application/json"" });             let blobUrl = URL.createObjectURL(blob);              window.gameInstance = UnityLoader.instantiate(""gameContainer"", blobUrl, {               onProgress: UnityProgress,               Module: {                 onRuntimeInitialized: function () {                   resizeUnityContainer();                   UnityProgress(window.gameInstance, 'complete');                 },                 preInit: [function() { UnityProgress(window.gameInstance, ""preinit""); }]               }             });           });         })         .catch(err => {           console.error(""Unity load failed:"", err);           var loadingInfo = document.getElementById(""loadingInfo"");           if (loadingInfo) {             loadingInfo.innerHTML = ""ERROR LOADING GAME - Check console"";           }         });     });   </script> </head> <body style=""width:100%; height:100%; margin:0; overflow:hidden"">   <div id=""webgl-content"" style=""width:100%; height: 100%"">     <div id=""gameContainer"" style=""width: 100%; height: 100%""></div>   </div>   <div id=""box""></div>   <div id=""loadingBox"">     <div id=""spinner""></div>     <div id=""bgBar""></div>     <div id=""progressBar""></div>   </div>   <div id=""icon""></div>   <p id=""loadingInfo""></p> </body> </html>","Dont Ask Why This is added","[""racing""]","Indian Truck Simulator","https://cdn-bgp.bluestacks.com/BGP/us/gametiles_com.ripcyber.indiantruck.cargodriving.freegame.jpg","other","[]","69f51c8b93096cfe2de1cc3a","2026-05-01T21:35:07.133000","2026-05-02T20:22:45.734000","69ee32c21259f0511987060d","elimcoen@gmail.com","false"
+"true","","<!DOCTYPE html>   <!-- Ultimate Game Stash file-->  <!-- For the regularly updating doc go to https://docs.google.com/document/d/1_FmH3BlSBQI7FGgAQL59-ZPe8eCxs35wel6JUyVaG8Q/ -->     <html lang=""en""> <base href=""https://cdn.jsdelivr.net/gh/Luts91/Luts91.github.io@master/idle-dices/""> <meta charset=UTF-8><meta name=viewport content=""user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1""><link rel=manifest href=manifest.json><link rel=icon href=assets/img/icon/icon32.png><link rel=apple-touch-icon sizes=32x32 href=assets/img/icon/icon32.png><link rel=apple-touch-icon sizes=64x64 href=assets/img/icon/icon64.png><link rel=apple-touch-icon sizes=96x96 href=assets/img/icon/icon96.png><link rel=apple-touch-icon sizes=128x128 href=assets/img/icon/icon128.png><link rel=apple-touch-icon sizes=168x168 href=assets/img/icon/icon168.png><link rel=apple-touch-icon sizes=192x192 href=assets/img/icon/icon192.png><link rel=apple-touch-icon sizes=256x256 href=assets/img/icon/icon256.png><link rel=apple-touch-icon sizes=512x512 href=assets/img/icon/icon512.png><title>Idle Dice</title><script src=cordova.js></script><script src=js/app.js></script><script src=https://sdk.crazygames.com/crazygames-sdk-v1.js></script><style>         body {             margin: 0;             background: white;         }         canvas {             margin: auto;         }         #turn{             width:100%;             height:100%;             position:fixed;             top:0;             left:0;             background-color:white;             display:none;         }         #ui{             position: fixed;             width: 100%;             height: 100%;         }         #text{             position: absolute;             top: 50%;             left: 50%;             transform: translate(-50%, -50%);             font-size: 2em;             font-family: Verdana monospace;             color: slategray;         }         #savePrompt{             position: absolute;             width: 100%;             height: 100%;             background: rgba(0, 0, 0, 0.7);             display: none;         }         #promptWindow{             color: white;             position: absolute;             top: 25%;             left: 25%;             width: 50%;             height: 25%;         }         #debug{             background-color: white;             position: absolute;         }         #save{             resize: none;             width: 100%;             height: 100%;         }         @font-face {             font-family: 'regular';             src: url('assets/fonts/robotomono-thin-webfont.woff2') format('woff2'),             url('assets/fonts/robotomono-thin-webfont.woff') format('woff');             font-weight: normal;             font-style: normal;          }         @font-face {             font-family: 'text';             src: url('assets/fonts/roboto-thin-webfont.woff2') format('woff2'),             url('assets/fonts/roboto-thin-webfont.woff') format('woff');             font-weight: normal;             font-style: normal;          }         @font-face {             font-family: 'med';             src: url('assets/fonts/roboto-medium-webfont.woff2') format('woff2'),             url('assets/fonts/roboto-medium-webfont.woff') format('woff');             font-weight: normal;             font-style: normal;          }     </style></head><body onload=init();><div style=""font-family:regular; position:absolute; left:-10000px"">Font Loaded</div><div style=""font-family:text; position:absolute; left:-10000px"">Font Loaded</div><div style=""font-family:med; position:absolute; left:-10000px"">Font Loaded</div><div id=debug></div><div id=savePrompt><div id=promptWindow><span id=saveInstruction>Copy this and save it somewhere.</span> <span id=loadInstruction>Paste the savedata here and click load.</span> <textarea id=save></textarea> <button id=copy>Copy</button> <button id=load>Load</button> <input id=file type=file> <button id=close>Close</button></div></div><div id=turn><span id=text>Turn your Device</span></div></body></html>","Roll the dice","[""idle""]","Idle Dice","https://cdn.jsdelivr.net/gh/freebuisness/covers@main/294.png","idle","[]","69f51c34de6781c64042c574","2026-05-01T21:33:40.815000","2026-05-02T20:22:51.999000","69ee32c21259f0511987060d","elimcoen@gmail.com","false"
+"true","","<!DOCTYPE html>    <!-- Ultimate Game Stash file-->  <!-- For the regularly updating doc go to https://docs.google.com/document/d/1_FmH3BlSBQI7FGgAQL59-ZPe8eCxs35wel6JUyVaG8Q/ -->    <html lang=""en-us"">   <base href=""https://cdn.jsdelivr.net/gh/bubbls/ports@latest/baldi-caseoh/"">   <head>     <meta charset=""utf-8"">     <meta http-equiv=""Content-Type"" content=""text/html; charset=utf-8"">     <title>Unity WebGL Player | CaseOhs Basics in Eating and Fast Food</title>     <link rel=""shortcut icon"" href=""TemplateData/favicon.ico"">     <link rel=""stylesheet"" href=""TemplateData/style.css"">     <script src=""TemplateData/UnityProgress.js""></script>         <script>     window.fileMergerConfig = {       files: [         { name: 'web.data.unityweb', parts: 2 },         { name: 'web.wasm.code.unityweb', parts: 2 },       ],       basePath: 'Build/',       debug: true     };   </script>   <script src=""https://cdn.jsdelivr.net/gh/bubbls/UGS-Assets@main/merge.js"" ></script>     <script src=""Build/UnityLoader.js""></script>     <script>       var unityInstance = UnityLoader.instantiate(""unityContainer"", ""Build/web.json"", {onProgress: UnityProgress});     </script>         <style>       * { margin: 0; padding: 0; box-sizing: border-box; }       html, body { width: 100%; height: 100%; overflow: hidden; background: #000; }       .webgl-content { width: 100%; height: 100%; }       #unityContainer { width: 100% !important; height: 100% !important; }     </style>   </head>   <body>     <div class=""webgl-content"">       <div id=""unityContainer"" style=""width: 960px; height: 600px""></div>       <div class=""footer"">         <div class=""webgl-logo""></div>         <div class=""fullscreen"" onclick=""unityInstance.SetFullscreen(1)""></div>         <div class=""title"">CaseOhs Basics in Eating and Fast Food</div>       </div>     </div>   </body> </html>","Not casoh....","[""horror""]","Casohs basics in eating and fast food","https://i1.sndcdn.com/artworks-27wURXLpyyA9ABVB-lugERw-t1080x1080.jpg","horror","[]","69f51a7125aff6673941b80e","2026-05-01T21:26:09.380000","2026-05-02T20:22:58.844000","69ee32c21259f0511987060d","elimcoen@gmail.com","false"
+"true","","<!-- Ultimate Game Stash file-->  <!-- For the regularly updating doc go to https://docs.google.com/document/d/1_FmH3BlSBQI7FGgAQL59-ZPe8eCxs35wel6JUyVaG8Q/ --> <!-- made by genizy -->  <!DOCTYPE html> <html lang=""en-us"">  <head>   <base href=""https://cdn.jsdelivr.net/gh/genizy/dmad-poki@49b5ab6b987f5f3be58f9dae59c92e8fc1aab9b0/"">   <script>   window.assgdd = {     ""ancestorOrigins"": {         ""0"": ""https://games.poki.com"",         ""1"": ""https://poki.com""     },     ""href"": ""https://f9564e4e-ef25-4e4b-ba67-cb11a1576bbd.poki-gdn.com/cc1bc57a-e355-4696-97c2-097bf6188606/index.html?country=US&url_referrer=https%3A%2F%2Fpoki.com%2F&site_id=3&iso_lang=en&poki_url=https%3A%2F%2Fpoki.com%2Fen%2Fg%2Fdrive-mad&hoist=yes&nonPersonalized=n&cloudsavegames=n&familyFriendly=n&categories=78%2C93%2C96%2C103%2C377%2C390%2C400%2C893%2C929%2C1126%2C1139%2C1140%2C1141%2C1143%2C1147%2C1163%2C1185%2C1190%2C1193%2C1197&special_condition=landing&game_id=f9564e4e-ef25-4e4b-ba67-cb11a1576bbd&game_version_id=cc1bc57a-e355-4696-97c2-097bf6188606&inspector=0"",     ""origin"": ""https://f9564e4e-ef25-4e4b-ba67-cb11a1576bbd.poki-gdn.com"",     ""protocol"": ""https:"",     ""host"": ""f9564e4e-ef25-4e4b-ba67-cb11a1576bbd.poki-gdn.com"",     ""hostname"": ""f9564e4e-ef25-4e4b-ba67-cb11a1576bbd.poki-gdn.com"",     ""port"": """",     ""pathname"": ""/cc1bc57a-e355-4696-97c2-097bf6188606/index.html"",     ""search"": ""?country=US&url_referrer=https%3A%2F%2Fpoki.com%2F&site_id=3&iso_lang=en&poki_url=https%3A%2F%2Fpoki.com%2Fen%2Fg%2Fdrive-mad&hoist=yes&nonPersonalized=n&cloudsavegames=n&familyFriendly=n&categories=78%2C93%2C96%2C103%2C377%2C390%2C400%2C893%2C929%2C1126%2C1139%2C1140%2C1141%2C1143%2C1147%2C1163%2C1185%2C1190%2C1193%2C1197&special_condition=landing&game_id=f9564e4e-ef25-4e4b-ba67-cb11a1576bbd&game_version_id=cc1bc57a-e355-4696-97c2-097bf6188606&inspector=0"",     ""hash"": """" }   </script>   <meta charset=""utf-8"">   <meta http-equiv=""Content-Type"" content=""text/html; charset=utf-8"">    <title>Drive Mad</title>   <meta name=""description"" content="""">   <meta name=""google"" content=""notranslate"">    <meta name=""viewport"" content=""width=device-width, initial-scale=1, user-scalable=no"">   <link rel=""stylesheet"" href=""webapp/fancade.css"">   <link rel=""icon"" href=""webapp/favicon.ico"">    <!-- POKI SDK -->   <script src=""poki-sdk.js"" ></script> </head>  <body id=""body"">    <!-- Modal dialog div -->   <div id=""modal_parent"">     <div id=""modal_content"">       <span id=""modal_close_button"">&times;</span>       <div id=""store_link_modal_content"" class=""modal_inner""></div>       <div id=""share_file_modal_content"" class=""modal_inner""></div>     </div>   </div>    <!--        Game canvas and overlay. Emscripten makes some assumptions about how the canvas is positioned in order       to translate document to game coordinates     -->   <div id=""canvas_border"" class=""emscripten_border"">     <div id=""play_content"" class=""middle center"">       <div class=""edge"">         <div class=""box"">           <div class=""black"">             <img src=""webapp/cover.jpg"" class=""cover"">             <p class=""title"">Drive Mad</p>             <p class=""author"">Fancade</p>           </div>         </div>       </div>       <div id=""progress_or_play"">         <progress id=""progress"" class=""loading"" value=""0"" max=""100""></progress>       </div>       <p class=""description""></p>     </div>     <canvas class=""emscripten"" id=""canvas"" tabindex=-1>     </canvas>     <div id=""gradient""></div>     <div id=""webview_content""></div>   </div>    <!-- Manual JS, Called from WASM -->   <script type=""text/javascript"" src=""webapp/source_min.js""></script>    <!-- Auto generated JS -->   <script type=""text/javascript"" src=""webapp/index.js""></script> </body>  </html>","Drive Happy😁","[""racing"",""arcade""]","Drive Mad","https://ozogames.com/uploads/2025/08/Drive-mad-image-1.webp","","[]","69f5175889e849e083d13de4","2026-05-01T21:12:56.597000","2026-05-02T20:23:05.445000","69ee32c21259f0511987060d","elimcoen@gmail.com","false"
+"true","","<!-- Ultimate Game Stash file-->  <!-- For the regularly updating doc go to https://docs.google.com/document/d/1_FmH3BlSBQI7FGgAQL59-ZPe8eCxs35wel6JUyVaG8Q/ -->  <!DOCTYPE html> <html lang=""en"">      <base href=""https://cdn.jsdelivr.net/gh/genizy/biologyexams@main/generic-fighter-maybe/"">     <!-- Custom PreHead code is injected here -->           <head>         <meta http-equiv=""X-UA-Compatible"" content=""IE=edge"" />         <meta name=""apple-mobile-web-app-capable"" content=""yes"" />         <meta name =""viewport"" content=""width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"" />         <meta name=""apple-mobile-web-app-status-bar-style"" content=""black-translucent"" />         <meta charset=""utf-8""/>          <!-- Builtin injector for disabling cache -->         <meta http-equiv=""pragma"" content=""no-cache""/>          <!-- Set the title bar of the page -->         <title>Created with GameMaker Studio 2</title>          <!-- Custom PreStyle code is injected here -->                   <!-- Set the background colour of the document -->         <style>             body {                 background: #0;                 color: #cccccc;                 margin: 0px;                 padding: 0px;                 border: 0px;             }              canvas {                 image-rendering: optimizeSpeed;                 -webkit-interpolation-mode: nearest-neighbor;                 -ms-touch-action: none;                 touch-action: none;                 margin: 0px;                 padding: 0px;                 border: 0px;             }             :-webkit-full-screen #canvas {                 width: 100%;                 height: 100%;             }             :-webkit-full-screen {                 width: 100%;                 height: 100%;             }                          /* Custom Runner Styles */             div.gm4html5_div_class {                 margin: 0px;                 padding: 0px;                 border: 0px;             }             div.gm4html5_login {                 padding: 20px;                 position: absolute;                 border: solid 2px #000000;                 background-color: #404040;                 color:#00ff00;                 border-radius: 15px;                 box-shadow: #101010 20px 20px 40px;             }             div.gm4html5_cancel_button {                 float: right;             }             div.gm4html5_login_button {                 float: left;             }             div.gm4html5_login_header {                 text-align: center;             }             /* END - Custom Runner Styles */                      </style>          <!-- Custom PostStyle code is injected here -->                   <!-- Builtin injector for injecting flurry analytics code -->              </head>      <!-- Custom PostHead code is injected here -->           <!-- Custom PreBody code is injected here -->           <body>         <div class=""gm4html5_div_class"" id=""gm4html5_div_id"">                          <!-- Builtin injector for splash screen -->                           <!-- Create the canvas element the game draws to -->             <canvas id=""canvas"" width=""960"" height=""540"" >                 <p>Your browser doesn't support HTML5 canvas.</p>             </canvas>         </div>          <!-- Run the game code -->         <script type=""text/javascript"" src=""html5game/GenericFighterMaybe.js?cachebust=71215398""></script>          <!-- Builtin injector for injecting runner path -->                   <script>window.onload = GameMaker_Init;</script>          <!-- Builtin injector for injecting google analytics code -->               </body>      <!-- Custom PostBody code is injected here -->      </html>","Fight.... Plssss","[""action""]","Generic Fighter Maybe","https://cdn.jsdelivr.net/gh/freebuisness/covers@main/519.png","action","[]","69f5162682f7753af4c152ac","2026-05-01T21:07:50.601000","2026-05-02T20:23:17.666000","69ee32c21259f0511987060d","elimcoen@gmail.com","false"
+"false","","<!DOCTYPE html>   <!-- Ultimate Game Stash file-->  <!-- For the regularly updating doc go to https://docs.google.com/document/d/1_FmH3BlSBQI7FGgAQL59-ZPe8eCxs35wel6JUyVaG8Q/ -->   <html> <head>   <title>EaglercraftX</title>   <meta charset=""UTF-8"" />   <meta name=""viewport"" content=""width=device-width, initial-scale=1.0"" />   <style>     /* Sayfa ve oyun çerçevesi için temel düzenlemeler */     html, body {       margin: 0;       padding: 0;       height: 100%;       overflow: hidden; /* Sayfanın gereksiz kaymasını engeller */     }      #game_frame {       width: 100%;       height: 100%;       display: flex;       justify-content: center;       align-items: center;       background-color: #000; /* Arka plan rengi, isteğe bağlı */     }   </style>   <script type=""text/javascript"" src=""https://cdn.jsdelivr.net/gh/bubbls/loltheygotbannedfromjsdelivr@38f40924ae70b843f3d4d0a5dc3d6ba13ca3a461/classes.min.js""></script>   <script type=""text/javascript"" src=""https://cdn.jsdelivr.net/gh/bubbls/loltheygotbannedfromjsdelivr@38f40924ae70b843f3d4d0a5dc3d6ba13ca3a461/fix-webm-duration.js""></script>   <script type=""text/javascript"">     window.addEventListener('load', function () {       window.focus();       document.body.addEventListener('click', function (e) {         window.focus();       }, false);     });      window.addEventListener(""load"", () => {       if (document.location.href.startsWith(""file:"")) {         console.warn(""HTTP required. Do not open this file locally, run it via a local HTTP server."");       } else {         // Default configuration for EaglercraftX         if (!window.eaglercraftXOpts) {           window.eaglercraftXOpts = {             container: ""game_frame"",             assetsURI: ""https://cdn.jsdelivr.net/gh/bubbls/loltheygotbannedfromjsdelivr@38f40924ae70b843f3d4d0a5dc3d6ba13ca3a461/assets.epk"",             localesURI: ""lang/"",             servers: [               { addr: ""wss://mc.arch.lol/"", name: ""ArchMC"" },               { addr: ""wss://mc.asspixel.net"", name: ""AssPixel"" },               { addr: ""wss://sus.shhnowisnottheti.me"", name: ""Ayunboom"" },               { addr: ""wss://aeon-network.net/1.8"", name: ""Aeon"" },               { addr: ""wss://zentic.org/"", name: ""Zentic"" }             ]           };         }         // Ensure container element exists         let container = document.querySelector(`#${window.eaglercraftXOpts.container}`);         if (!container) {           console.error(""Container element not found. Creating a default one."");           container = document.createElement(""div"");           container.id = window.eaglercraftXOpts.container;           document.body.appendChild(container);         }         try {           main();         } catch (error) {           console.error(""Error starting EaglercraftX:"", error);         }       }     });   </script> </head> <body>   <!-- Ensure essential DOM elements exist -->   <div id=""game_frame""></div>   <div class=""_eaglercraftX_wrapper_element""></div>   <div id=""_eaglercraftX_crashReason"" style=""display:none;""></div>   <div id=""_eaglercraftX_crashUserAgent"" style=""display:none;""></div> </body> </html> clminecraft1-8-8.html External  Displaying clminecraft1-8-8.html.","Im a MINOR I mean MINER","[""multiplayer"",""arcade""]","Minecraft","https://img.poki-cdn.com/cdn-cgi/image/q=78,scq=50,width=314,height=314,fit=cover,f=auto/12a0ed7c6bc09b73d6558c6f69ed7f5f/minecraft-classic.png","arcade","[]","69f513694edfb9cb26ece25e","2026-05-01T20:56:09.769000","2026-05-02T20:23:26.742000","69ee32c21259f0511987060d","elimcoen@gmail.com","false"
+"false","","<!DOCTYPE html>   <!-- Ultimate Game Stash file-->  <!-- For the regularly updating doc go to https://docs.google.com/document/d/1_FmH3BlSBQI7FGgAQL59-ZPe8eCxs35wel6JUyVaG8Q/ -->    <html lang=""en""> <head>   <meta charset=""utf-8"">   <meta name=""viewport"" content=""width=device-width, user-scalable=no, initial-scale=1.0"">   <title>CrazyCattle3D</title>   <style>     html,     body,     #canvas {       margin: 0;       padding: 0;       border: 0;     }      body {       color: white;       background-color: black;       overflow: hidden;       touch-action: none;     }      #canvas {       display: block;     }      #canvas:focus {       outline: none;     }      #status,     #status-splash,      #status-progress {        position: absolute;       left: 0;       right: 0;     }      #status,     #status-splash {       top: 0;       bottom: 0;     }      #status {       background-color: #000000;       display: flex;       flex-direction: column;       justify-content: center;       align-items: center;       visibility: hidden;     }      #status-splash {       max-height: 100%;       max-width: 100%;       margin: auto;     }      #status-splash.show-image--false {       display: none;     }      #status-splash.fullsize--true {       height: 100%;       width: 100%;       object-fit: contain;     }      #status-splash.use-filter--false {       image-rendering: pixelated;     }      #status-progress,     #status-notice {       display: none;     }      #status-progress {       bottom: 10%;       width: 50%;       margin: 0 auto;     }      #status-notice {       background-color: #5b3943;       border-radius: 0.5rem;       border: 1px solid #9b3943;       color: #e0e0e0;       font-family: 'Noto Sans', 'Droid Sans', Arial, sans-serif;       line-height: 1.3;       margin: 0 2rem;       overflow: hidden;       padding: 1rem;       text-align: center;       z-index: 1;     }   </style>   <link id=""-gd-engine-icon"" rel=""icon"" type=""image/png"" href=""https://cdn.jsdelivr.net/gh/bubbls/cc3d-merge/index.icon.png"" />   <link rel=""apple-touch-icon"" href=""https://cdn.jsdelivr.net/gh/bubbls/cc3d-merge/index.apple-touch-icon.png"" />    <script>      const CDN_BASE = 'https://cdn.jsdelivr.net/gh/bubbls/cc3d-merge/';          async function mergeSplitFiles(baseName, numParts) {       try {         const parts = [];         for (let i = 1; i <= numParts; i++) {           parts.push(`${CDN_BASE}${baseName}.part${i}`);         }          console.log(`Merging ${baseName} from ${numParts} parts...`);                  const responses = await Promise.all(parts.map(part =>            fetch(part).catch(err => {             console.error(`Failed to fetch ${part}:`, err);             throw new Error(`Failed to load ${part}`);           })         ));                  for (let i = 0; i < responses.length; i++) {           if (!responses[i].ok) {             throw new Error(`Failed to load ${parts[i]}: ${responses[i].status} ${responses[i].statusText}`);           }         }          const buffers = await Promise.all(responses.map(r => r.arrayBuffer()));                  const totalSize = buffers.reduce((sum, buf) => sum + buf.byteLength, 0);                   const mergedArray = new Uint8Array(totalSize);         let offset = 0;         for (const buffer of buffers) {           mergedArray.set(new Uint8Array(buffer), offset);           offset += buffer.byteLength;         }          console.log(`${baseName} merged successfully: ${totalSize} bytes`);         return mergedArray.buffer;       } catch (error) {         console.error(`Error merging ${baseName}:`, error);         throw error;       }     }      window.mergedFiles = {       pck: null,       wasm: null     };      if (!window.originalFetch) {       window.originalFetch = window.fetch;     }      window.fetch = function(url, ...args) {       const urlStr = typeof url === 'string' ? url : url.toString();              if (urlStr.includes('index.pck') && !urlStr.includes('.part')) {         console.log('Intercepting index.pck request');         return new Promise((resolve) => {           const checkData = setInterval(() => {             if (window.mergedFiles.pck) {               clearInterval(checkData);               resolve(new Response(window.mergedFiles.pck, {                 status: 200,                 statusText: 'OK',                 headers: {                   'Content-Type': 'application/octet-stream',                   'Content-Length': window.mergedFiles.pck.byteLength                 }               }));             }           }, 50);         });       }              if (urlStr.includes('index.wasm') && !urlStr.includes('.part')) {         console.log('Intercepting index.wasm request');         return new Promise((resolve) => {           const checkData = setInterval(() => {             if (window.mergedFiles.wasm) {               clearInterval(checkData);               resolve(new Response(window.mergedFiles.wasm, {                 status: 200,                 statusText: 'OK',                 headers: {                   'Content-Type': 'application/wasm',                   'Content-Length': window.mergedFiles.wasm.byteLength                 }               }));             }           }, 50);         });       }              return window.originalFetch.call(this, url, ...args);     };      (async function() {       try {         const [pckBuffer, wasmBuffer] = await Promise.all([           mergeSplitFiles('index.pck', 3),           mergeSplitFiles('index.wasm', 3)         ]);                  window.mergedFiles.pck = pckBuffer;         window.mergedFiles.wasm = wasmBuffer;                  console.log('All files merged and ready!');       } catch (error) {         console.error('Failed to merge files:', error);         alert('Failed to load game files. Please check that all .part files are uploaded to your CDN.\n\nError: ' + error.message);       }     })();   </script> </head>  <body>   <canvas id=""canvas"">     Your browser does not support the canvas tag.   </canvas>    <noscript>     Your browser does not support JavaScript.   </noscript>    <div id=""status"">     <img id=""status-splash"" class=""show-image--true fullsize--true use-filter--true"" src=""https://cdn.jsdelivr.net/gh/bubbls/cc3d-merge/index.png"" alt="""">     <progress id=""status-progress""></progress>     <div id=""status-notice""></div>   </div>    <script src=""https://cdn.jsdelivr.net/gh/bubbls/cc3d-merge/index.js""></script>   <script>      const GODOT_CONFIG = {       ""args"": [],       ""canvasResizePolicy"": 2,       ""ensureCrossOriginIsolationHeaders"": true,       ""executable"": ""index"",       ""experimentalVK"": false,       ""fileSizes"": {         ""index.pck"": 42336176,         ""index.wasm"": 43699190       },       ""focusCanvas"": true,       ""gdextensionLibs"": []     };     const GODOT_THREADS_ENABLED = false;     const engine = new Engine(GODOT_CONFIG);      (function() {       const statusOverlay = document.getElementById('status');       const statusProgress = document.getElementById('status-progress');       const statusNotice = document.getElementById('status-notice');        let initializing = true;       let statusMode = '';        function setStatusMode(mode) {         if (statusMode === mode || !initializing) {           return;         }         if (mode === 'hidden') {           statusOverlay.remove();           initializing = false;           return;         }         statusOverlay.style.visibility = 'visible';         statusProgress.style.display = mode === 'progress' ? 'block' : 'none';         statusNotice.style.display = mode === 'notice' ? 'block' : 'none';         statusMode = mode;       }        function setStatusNotice(text) {         while (statusNotice.lastChild) {           statusNotice.removeChild(statusNotice.lastChild);         }         const lines = text.split('\n');         lines.forEach((line) => {           statusNotice.appendChild(document.createTextNode(line));           statusNotice.appendChild(document.createElement('br'));         });       }        function displayFailureNotice(err) {         console.error(err);         if (err instanceof Error) {           setStatusNotice(err.message);         } else if (typeof err === 'string') {           setStatusNotice(err);         } else {           setStatusNotice('An unknown error occurred.');         }         setStatusMode('notice');         initializing = false;       }        const missing = Engine.getMissingFeatures({         threads: GODOT_THREADS_ENABLED,       });        if (missing.length !== 0) {         const missingMsg = 'Error\nThe following features required to run Godot projects on the Web are missing:\n';         displayFailureNotice(missingMsg + missing.join('\n'));       } else {         setStatusMode('progress');         engine.startGame({           'onProgress': function(current, total) {             if (current > 0 && total > 0) {               statusProgress.value = current;               statusProgress.max = total;             } else {               statusProgress.removeAttribute('value');               statusProgress.removeAttribute('max');             }           },         }).then(() => {           setStatusMode('hidden');         }, displayFailureNotice);       }     }());   </script> </body> </html>","VROOOOOOOOOOOOOOMMMMMMMMM VROOOOOMMMM","[""racing""]","Crazy Cattle 3d","https://img02.symbaloo.com/XPUEyvCMeHSBnj1zo3b3Dw6a9YE=/0x7:245x252/fit-in/522x342/filters:no_upscale()/smarkImages%2Fv1%2Fd1%2Fd5%2F1cbad2544788a399975998b6a3afd8fbb336704132e64cd00edee0355012.png","arcade","[]","69f50dfe2690140ea7f6b838","2026-05-01T20:33:02.861000","2026-05-02T20:23:32.987000","69ee32c21259f0511987060d","elimcoen@gmail.com","false"
+"true","","<!DOCTYPE html>   <!-- Ultimate Game Stash file-->  <!-- For the regularly updating doc go to https://docs.google.com/document/d/1_FmH3BlSBQI7FGgAQL59-ZPe8eCxs35wel6JUyVaG8Q/ -->   <html lang=""en-us""> <head>     <meta charset=""utf-8"">     <meta http-equiv=""Content-Type"" content=""text/html; charset=utf-8"">     <title>Burrito Bison</title>          <base href=""https://cdn.jsdelivr.net/gh/bubbls/UGS-Assets@main/BurritoBison-main/"">          <style>         html, body {             width: 100%;             height: 100%;             margin: 0;             padding: 0;             overflow: hidden;             background-color: #000;         }                  /* FIXED: Changed ID to match the div below (#gameContainer) */         #gameContainer {             width: 100% !important;             height: 100% !important;             position: absolute;             top: 0;             left: 0;             margin: 0 !important;             display: flex;             justify-content: center;             align-items: center;         }          /* Force canvas inside gameContainer to fit */         #gameContainer canvas {             width: 100% !important;             height: 100% !important;         }     </style>      <script>       window.fileMergerConfig = {         files: [           // Only include files here that are ACTUALLY split into .part1, .part2           { name: 'burrito-bison-ll.data.unityweb', parts: 2 },            { name: 'burrito-bison-ll.asm.code.unityweb', parts: 2 },           { name: 'burrito-bison-ll.asm.memory.unityweb', parts: 1 },           { name: 'burrito-bison-ll.asm.framework.unityweb', parts: 1 },           // REMOVED framework and memory.            // Only add them back if you actually split them into .part1 files.           // If they are standard files <50MB, let the browser load them normally.         ],         basePath: '',          debug: true       };       </script>      <script>     (function() {       'use strict';       const defaultConfig = { files: [], basePath: '', debug: true };       const config = Object.assign({}, defaultConfig, window.fileMergerConfig || {});       window.mergedFiles = window.mergedFiles || {};       const mergeStatus = {};        function log(...args) { if (config.debug) console.log('[FileMerger]', ...args); }       function error(...args) { console.error('[FileMerger]', ...args); }        function normalizeUrl(url) {         try { return decodeURIComponent(url.toString().split('?')[0]); } catch (e) { return url; }       }        function urlsMatch(url1, url2) {         const norm1 = normalizeUrl(url1);         const norm2 = normalizeUrl(url2);         if (norm1 === norm2) return true;         if (norm1.endsWith(norm2) || norm2.endsWith(norm1)) return true;         return norm1.split('/').pop() === norm2.split('/').pop();       }        async function mergeSplitFiles(filePath, numParts) {         try {           const parts = [];           for (let i = 1; i <= numParts; i++) parts.push(`${filePath}.part${i}`);           log(`Merging ${filePath} from ${numParts} parts...`);           const responses = await Promise.all(parts.map(part => window.originalFetch(part)));                      for (let i = 0; i < responses.length; i++) {             if (!responses[i].ok) throw new Error(`Failed to load ${parts[i]}: ${responses[i].status}`);           }            const buffers = await Promise.all(responses.map(r => r.arrayBuffer()));           const totalSize = buffers.reduce((sum, buf) => sum + buf.byteLength, 0);           const mergedArray = new Uint8Array(totalSize);           let offset = 0;           for (const buffer of buffers) {             mergedArray.set(new Uint8Array(buffer), offset);             offset += buffer.byteLength;           }           log(`✅ ${filePath} merged (${(totalSize/1024/1024).toFixed(2)} MB)`);           return mergedArray.buffer;         } catch (err) {           error(`Failed to merge ${filePath}:`, err);           throw err;         }       }        function shouldInterceptFile(url) {         const urlStr = normalizeUrl(url);         if (urlStr.includes('.part')) return null;         for (const file of config.files) {           const fileName = file.name;           const fullPath = config.basePath ? `${config.basePath}${fileName}` : fileName;           if (urlsMatch(urlStr, fileName) || urlsMatch(urlStr, fullPath)) return fileName;         }         return null;       }        function getMergedFile(filename) {         if (window.mergedFiles[filename]) return window.mergedFiles[filename];         for (const [key, value] of Object.entries(window.mergedFiles)) {           if (urlsMatch(key, filename)) return value;         }         return null;       }        if (!window.originalFetch) window.originalFetch = window.fetch;       window.fetch = function(url, ...args) {         const filename = shouldInterceptFile(url);         if (filename) {           log('Intercepting fetch:', filename);           return new Promise((resolve, reject) => {             const check = setInterval(() => {               const buffer = getMergedFile(filename);               if (buffer) {                 clearInterval(check);                 resolve(new Response(buffer, { status: 200 }));               } else if (mergeStatus[filename] === 'failed') {                 clearInterval(check); reject(new Error('Merge failed'));               }             }, 100);           });         }         return window.originalFetch.call(this, url, ...args);       };        if (!window.OriginalXMLHttpRequest) window.OriginalXMLHttpRequest = window.XMLHttpRequest;       window.XMLHttpRequest = function(options) {         const xhr = new window.OriginalXMLHttpRequest(options);         const originalOpen = xhr.open;         const originalSend = xhr.send;         let requestUrl = '';         xhr.open = function(method, url, ...args) {           requestUrl = url;           return originalOpen.call(this, method, url, ...args);         };         xhr.send = function(...args) {           const filename = shouldInterceptFile(requestUrl);           if (filename) {             log('Intercepting XHR:', filename);             const waitForMerge = () => {               const buffer = getMergedFile(filename);               if (buffer) {                 Object.defineProperties(xhr, {                   status: { value: 200 },                   response: { value: buffer },                   readyState: { value: 4 }                 });                 setTimeout(() => {                    if(xhr.onreadystatechange) xhr.onreadystatechange();                    if(xhr.onload) xhr.onload({ type: 'load', target: xhr });                 }, 10);               } else if (mergeStatus[filename] === 'failed') {                  if(xhr.onerror) xhr.onerror(new Error('Merge failed'));               } else { setTimeout(waitForMerge, 100); }             };             waitForMerge();             return;           }           return originalSend.call(this, ...args);         };         return xhr;       };        async function autoMergeFiles() {         if (!config.files.length) return;         config.files.forEach(file => {           const fullPath = config.basePath ? `${config.basePath}${file.name}` : file.name;           mergeStatus[file.name] = 'merging';           mergeSplitFiles(fullPath, file.parts).then(buffer => {             window.mergedFiles[file.name] = buffer;             window.mergedFiles[fullPath] = buffer;             mergeStatus[file.name] = 'ready';           }).catch(() => mergeStatus[file.name] = 'failed');         });       }       autoMergeFiles();     })();     </script>      <link rel=""stylesheet"" href=""style.css"">     <script src=""UnityProgress.js""></script>     <script src=""burrito-bison-ll.js""></script>      <script src=""kongregate_api.js""></script>          <script>       var gameInstance = UnityLoader.instantiate(""gameContainer"", ""burrito-bison-ll.json"", {           onProgress: UnityProgress,           Module: {               onRuntimeInitialized: function() {                   UnityProgress(gameInstance, ""complete"");               }           }       });     </script> </head> <body>     <div class=""webgl-content"" style=""width: 100%; height: 100%;"">         <div id=""gameContainer"" style=""width: 100%; height: 100%;""></div>     </div>  </body> </html>","NO MORE ICE!!!!","[""idle"",""arcade""]","Burrito Bison","https://cdn.jsdelivr.net/gh/freebuisness/covers@main/78.png","arcade","[]","69f50d9ac7ad2fe9d10e6fda","2026-05-01T20:31:22.489000","2026-05-02T20:23:40.995000","69ee32c21259f0511987060d","elimcoen@gmail.com","false"
+"true","","<!DOCTYPE html>   <!-- Ultimate Game Stash file-->  <!-- For the regularly updating doc go to https://docs.google.com/document/d/1_FmH3BlSBQI7FGgAQL59-ZPe8eCxs35wel6JUyVaG8Q/ -->   <html lang=""en-us""> <head>     <title>Granny Original</title>     <meta charset=""utf-8"">     <meta name=""robots"" content=""noindex, nofollow"">     <meta http-equiv=""Content-Type"" content=""text/html; charset=utf-8"">     <link rel=""stylesheet"" href=""https://cdn.jsdelivr.net/gh/bubbls/granny@212c543a85b243c4a0b92211f557e760d83d2292/TemplateData/style.css"">     <script src=""https://cdn.jsdelivr.net/gh/bubbls/granny@212c543a85b243c4a0b92211f557e760d83d2292/sdk.js""></script>     <!-- GameMonetize SDK Entegrasyonu -->     <script type=""text/javascript"">         window.SDK_OPTIONS = {             gameId: ""jp112o3o4hzgrnc7zaewjkrfk282pul8"",             onEvent: function (a) {                 switch (a.name) {                     case ""SDK_GAME_PAUSE"":                         console.log(""Oyun duraklatıldı, ses kapatılıyor..."");                         if (typeof myGameInstance !== 'undefined' && myGameInstance) {                             myGameInstance.SendMessage('AudioManager', 'MuteAudio');                         }                         break;                     case ""SDK_GAME_START"":                         console.log(""Reklam bitti, oyun devam ediyor..."");                         if (typeof myGameInstance !== 'undefined' && myGameInstance) {                             myGameInstance.SendMessage('AudioManager', 'UnmuteAudio');                         }                         break;                     case ""SDK_READY"":                         console.log(""SDK hazır."");                         break;                 }             }         };         (function (a, b, c) {             var d = a.getElementsByTagName(b)[0];             a.getElementById(c) || (a = a.createElement(b), a.id = c, a.src = ""https://cdn.jsdelivr.net/gh/testamalame/sef@main/sedk.js"", d.parentNode.insertBefore(a, d));         })(document, ""script"", ""gamemonetize-sdk"");     </script>     <style>         body {             margin: 0;             padding: 0;             overflow: hidden;             background: url('https://cdn.jsdelivr.net/gh/gru6nny/ohd@main/background.png') no-repeat center center fixed;             background-size: cover;         }         #unity-container {             position: absolute;             width: 100%;             height: 100%;             left: 0;             top: 0;         }         #unity-loading-bar {             position: absolute;             top: 50%;             left: 50%;             transform: translate(-50%, -50%);             width: 400px;             height: 20px;             background: rgba(0, 0, 0, 0.5);             border: 2px solid #ffffff;             border-radius: 10px;             display: block;         }         #unity-logo {             position: absolute;             top: calc(50% - 100px);             left: 50%;             transform: translateX(-50%);             width: 200px;             height: auto;         }         #unity-logo img {             max-width: 100%;             height: auto;         }         #unity-progress-bar-empty {             width: 100%;             height: 100%;             position: relative;         }         #unity-progress-bar-full {             position: absolute;             top: 0;             left: 0;             width: 0%;             height: 100%;             background: #4caf50;             border-radius: 8px;             transition: width 0.3s ease;         }         #unity-warning {             position: absolute;             left: 50%;             top: 5%;             transform: translate(-50%);             background: white;             padding: 10px;             display: none;             border: 1px solid #ccc;             border-radius: 5px;         }     </style> </head> <body>     <div id=""unity-container"">         <canvas id=""unity-canvas"" style=""position: absolute; width: 100%; height: 100%""></canvas>         <div id=""unity-loading-bar"">             <div id=""unity-logo"">             </div>             <div id=""unity-progress-bar-empty"">                 <div id=""unity-progress-bar-full""></div>             </div>         </div>         <div id=""unity-warning""></div>     </div>     <script>         async function mergeUnityWebFiles(baseUrl, filePrefix, totalParts, extension) {             const partUrls = [];             for (let i = 1; i <= totalParts; i++) {                 partUrls.push(`${baseUrl}/${filePrefix}_part${i}.${extension}`);             }              const buffers = [];             for (let i = 0; i < totalParts; i++) {                 const response = await fetch(partUrls[i]);                 if (!response.ok) {                     throw new Error(`Failed to load part: ${partUrls[i]}`);                 }                 const buffer = await response.arrayBuffer();                 buffers.push(buffer);                  const progress = ((i + 1) / totalParts) * 100;                 document.querySelector(""#unity-progress-bar-full"").style.width = `${progress}%`;             }              const totalLength = buffers.reduce((acc, buffer) => acc + buffer.byteLength, 0);             const combinedBuffer = new Uint8Array(totalLength);             let offset = 0;              buffers.forEach((buffer) => {                 combinedBuffer.set(new Uint8Array(buffer), offset);                 offset += buffer.byteLength;             });              return combinedBuffer;         }          var container = document.querySelector(""#unity-container"");         var canvas = document.querySelector(""#unity-canvas"");         var loadingBar = document.querySelector(""#unity-loading-bar"");         var progressBarFull = document.querySelector(""#unity-progress-bar-full"");         var warningBanner = document.querySelector(""#unity-warning"");          let myGameInstance = null;         let isAdShown = false;          function unityShowBanner(msg, type) {             function updateBannerVisibility() {                 warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';             }             var div = document.createElement('div');             div.innerHTML = msg;             warningBanner.appendChild(div);             if (type == 'error') div.style = 'background: red; padding: 10px;';             else {                 if (type == 'warning') div.style = 'background: yellow; padding: 10px;';                 setTimeout(function() {                     warningBanner.removeChild(div);                     updateBannerVisibility();                 }, 5000);             }             updateBannerVisibility();         }          function showAdOnClick() {             if (!isAdShown && typeof sdk !== 'undefined' && typeof sdk.showBanner !== 'undefined') {                 sdk.showBanner();                 isAdShown = true;             }         }          var buildUrl = ""https://cdn.jsdelivr.net/gh/gru6nny/ohd@main/Build"";         var loaderUrl = buildUrl + ""/Granny.loader.js"";          async function initializeGame() {             try {                 const dataBuffer = await mergeUnityWebFiles(buildUrl, ""Granny"", 2, ""data"");                 const wasmBuffer = await mergeUnityWebFiles(buildUrl, ""Granny"", 2, ""wasm"");                  const dataBlobUrl = URL.createObjectURL(new Blob([dataBuffer], { type: ""application/octet-stream"" }));                 const wasmBlobUrl = URL.createObjectURL(new Blob([wasmBuffer], { type: ""application/octet-stream"" }));                  var config = {                     dataUrl: dataBlobUrl,                     frameworkUrl: buildUrl + ""/Granny.framework.js"",                     codeUrl: wasmBlobUrl,                     streamingAssetsUrl: ""https://cdn.jsdelivr.net/gh/gru6nny/ohd@main/StreamingAssets"",                     companyName: ""Anastasia Kazantseva"",                     productName: ""Granny"",                     productVersion: ""1.0"",                     showBanner: unityShowBanner,                 };                  var script = document.createElement(""script"");                 script.src = loaderUrl;                 script.onload = () => {                     createUnityInstance(canvas, config, (progress) => {                         progressBarFull.style.width = 100 * progress + ""%"";                     }).then((unityInstance) => {                         myGameInstance = unityInstance;                         loadingBar.style.display = ""none"";                         // Oyun yüklendiğinde tıklama olayını ekle                         canvas.addEventListener('pointerdown', showAdOnClick);                         canvas.addEventListener('touchstart', showAdOnClick);                     }).catch((message) => {                         alert(message);                     });                 };                  document.body.appendChild(script);             } catch (error) {                 console.error(""Game initialization failed:"", error);             }         }          initializeGame();     </script> </body> </html>","No Grandpa? Single? LOSER!!!","[""horror""]","Granny","https://cdn.jsdelivr.net/gh/freebuisness/covers@main/90.png","horror","[]","69f50cebca84e0f955dea7f0","2026-05-01T20:28:27.265000","2026-05-02T20:23:46.979000","69ee32c21259f0511987060d","elimcoen@gmail.com","false"
+"true","","<!-- Ultimate Game Stash file--> 
+<!-- For the regularly updating doc go to https://docs.google.com/document/d/1_FmH3BlSBQI7FGgAQL59-ZPe8eCxs35wel6JUyVaG8Q/ -->
+
+<!doctype html>
+<html lang=""en"">
+
+<head>
+	<base href=""https://cdn.jsdelivr.net/gh/genizy/monkey-mart-mobile@89836e4c54e87739ace84f6fe801b423185cc51d/"">
+	<meta charset=""utf-8"">
+	<meta http-equiv=""X-UA-Compatible"" content=""IE=edge,chrome=1"">
+	<meta name=""robots"" content=""noindex, nofollow"">
+	<meta name=""viewport""
+		content=""width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, minimal-ui, shrink-to-fit=no"">
+	<meta name=""apple-mobile-web-app-capable"" content=""yes"">
+	<!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<title>Monkey Mart</title>
+	<style type=""text/css"">
+		/* Disable user selection to avoid strange bug in Chrome on Windows:
+	* Selecting a text outside the canvas, then clicking+draging would
+	* drag the selected text but block mouse down/up events to the engine.
+	*/
+		body {
+
+			position: fixed;
+			/* Prevent overscroll */
+
+			margin: 0;
+			padding: 0;
+		}
+
+		.canvas-app-container {
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			align-items: center;
+			justify-content: center;
+			overflow: hidden;
+		}
+
+		.canvas-app-container:-webkit-full-screen {
+			/* Auto width and height in Safari/Chrome fullscreen. */
+			width: auto;
+			height: auto;
+		}
+
+		#canvas {
+			outline: none;
+			border: 0;
+			width: 100%;
+			vertical-align: bottom;
+		}
+
+		#canvas-container {
+			position: relative;
+		}
+
+		canvas:focus,
+		canvas:active {
+			outline: none;
+			border: 0;
+			ie-dummy: expression(hideFocus=true);
+			-moz-outline-style: none;
+		}
+
+		div {
+			-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+			-webkit-touch-callout: none;
+			-webkit-user-select: none;
+			-khtml-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+		}
+
+		.banner-styleBottom {
+			margin: 0 auto;
+			position: fixed;
+			bottom: 0;
+			display: block;
+			left: 50%;
+			transform: translateX(-50%);
+		}
+
+		.banner-styleTop {
+			margin: 0 auto;
+			position: fixed;
+			top: 0;
+			display: block;
+			left: 50%;
+			transform: translateX(-50%);
+		}
+
+		.canvas-app-progress {
+			position: absolute;
+			background-color: #0A8A40;
+			height: 30px;
+			margin-top: -30px;
+			width: 100%;
+		}
+
+		.canvas-app-progress-bar {
+			font-size: 12px;
+			height: 30px;
+			color: rgb(255, 255, 255);
+			background-color: #FFE333;
+			text-align: center;
+			line-height: 20px;
+		}
+
+
+		.link,
+		.button {
+			font-family: sans-serif;
+			font-size: 14px;
+			font-weight: normal;
+			font-style: normal;
+			font-stretch: normal;
+			line-height: normal;
+			letter-spacing: 0px;
+			padding-top: 12px;
+		}
+
+		.buttons-background {
+			background-color: #ffffff;
+			width: 100%;
+			height: 42px;
+		}
+
+		body {
+			background-color: #ffffff;
+		}
+
+		.canvas-app-container {
+			background: #00BB61;
+			/* background: -moz-linear-gradient(-45deg, rgba(250,252,255,1) 0%, rgba(250,252,255,1) 50%, rgba(245,249,255,1) 50%, rgba(245,249,255,1) 100%);
+		background: -webkit-gradient(left top, right bottom, color-stop(0%, rgba(250,252,255,1)), color-stop(50%, rgba(250,252,255,1)), color-stop(50%, rgba(245,249,255,1)), color-stop(100%, rgba(245,249,255,1)));
+		background: -webkit-linear-gradient(-45deg, rgba(250,252,255,1) 0%, rgba(250,252,255,1) 50%, rgba(245,249,255,1) 50%, rgba(245,249,255,1) 100%);
+		background: -o-linear-gradient(-45deg, rgba(250,252,255,1) 0%, rgba(250,252,255,1) 50%, rgba(245,249,255,1) 50%, rgba(245,249,255,1) 100%);
+		background: -ms-linear-gradient(-45deg, rgba(250,252,255,1) 0%, rgba(250,252,255,1) 50%, rgba(245,249,255,1) 50%, rgba(245,249,255,1) 100%);
+		background: linear-gradient(135deg, rgba(250,252,255,1) 0%, rgba(250,252,255,1) 50%, rgba(245,249,255,1) 50%, rgba(245,249,255,1) 100%);
+		filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fafcff', endColorstr='#f5f9ff', GradientType=1 ); */
+		}
+
+		.canvas-app-canvas {
+			background-repeat: no-repeat;
+			background-position: center;
+
+			background-position: top;
+			background-size: cover;
+			background-image: url(""bg_loading.png"");
+
+
+		}
+	</style>
+	<script src=""patch/js/poki-sdk.js""></script>
+</head>
+
+<body>
+	<div id=""app-container"" class=""canvas-app-container"">
+		<div id=""canvas-container"" class=""canvas-app-canvas-container"">
+			<canvas id=""canvas"" class=""canvas-app-canvas"" tabindex=""1"" width=""960"" height=""640""></canvas>
+		</div>
+		<div class=""buttons-background"">
+		</div>
+		<!-- center and anchor to bottom of page -->
+		<div id=""progress-bar-root"" style=""position: absolute; bottom: 16%; left: 50%; visibility: hidden; z-index: 4;"">
+			<!-- <div id=""progress-bar-text""> -->
+			<img id=""progress-bar-bg"" src=""load_bar_bg.png"">
+			<img id=""progress-bar-fg"" src=""load_bar_fg.png"" style=""position:absolute; clip: rect(0px,0px,0px,0px);"">
+		</div>
+	</div>
+	<!-- -->
+	<!-- <div id=""bannerTop"" class=""banner-styleTop""></div> -->
+	<!-- <div id=""bannerBottom"" class=""banner-styleBottom""></div> -->
+	<!-- -->
+	<script id=""engine-loader"" type=""text/javascript"" src=""dmloader.js""></script>
+	<!-- -->
+	<script id=""engine-setup"" type=""text/javascript"">
+		var extra_params = {
+			archive_location_filter: function (path) {
+				return (""archive"" + path + """");
+			},
+			engine_arguments: [""--verify-graphics-calls=false"",],
+			custom_heap_size: 134217728,
+			full_screen_container: ""#canvas-container"",
+			disable_context_menu: true
+		}
+
+		Module['INITIAL_MEMORY'] = extra_params.custom_heap_size;
+
+		Module['onRuntimeInitialized'] = function () {
+			Module.runApp(""canvas"", extra_params);
+		};
+
+		Module[""locateFile""] = function (path, scriptDirectory) {
+			// dmengine*.wasm is hardcoded in the built JS loader for WASM,
+			// we need to replace it here with the correct project name.
+			if (path == ""dmengine.wasm"" || path == ""dmengine_release.wasm"" || path == ""dmengine_headless.wasm"") {
+				path = ""MonkeyMart.wasm"";
+			}
+			return scriptDirectory + path;
+		};
+
+		var is_iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+		var buttonHeight = 0;
+		var prevInnerWidth = -1;
+		var prevInnerHeight = -1;
+
+
+		function resize_game_canvas() {
+			// Hack for iOS when exit from Fullscreen mode
+			if (is_iOS) {
+				window.scrollTo(0, 0);
+			}
+
+			var app_container = document.getElementById('app-container');
+			var game_canvas = document.getElementById('canvas');
+			var progress_bar_root = document.getElementById('progress-bar-root');
+			var progress_bar_fg = document.getElementById('progress-bar-fg');
+			var progress_bar_bg = document.getElementById('progress-bar-bg');
+			var innerWidth = window.innerWidth;
+			var innerHeight = window.innerHeight - buttonHeight;
+			if (prevInnerWidth == innerWidth && prevInnerHeight == innerHeight) {
+				return;
+			}
+			prevInnerWidth = innerWidth;
+			prevInnerHeight = innerHeight;
+			var width = 960;
+			var height = 640;
+			var targetRatio = width / height;
+			var actualRatio = innerWidth / innerHeight;
+
+
+			//Stretch
+			width = innerWidth;
+			height = innerHeight;
+
+
+
+			app_container.style.width = width + ""px"";
+			app_container.style.height = height + buttonHeight + ""px"";
+			game_canvas.width = width;
+			game_canvas.height = height;
+
+			// progress bar
+			var bar_h = width < height ? width : height;
+			progress_bar_bg.width = Math.min(Math.ceil(bar_h * 0.06 * 300 / 24), width * 0.8);
+
+			progress_bar_bg.style.marginLeft = - progress_bar_bg.width / 2 + ""px"";
+			progress_bar_fg.width = Math.ceil(progress_bar_bg.width * 1);
+
+			progress_bar_fg.style.marginTop = (progress_bar_bg.width * 0) * (0) / 2 + ""px"";
+			progress_bar_fg.style.marginLeft = -progress_bar_bg.width / 2 - progress_bar_fg.width / 2 + ""px"";
+
+			// progress_bar_text.style.fontSize = Math.ceil(bar_h * 0.10) + ""px"";
+			progress_bar_root.style.bottom = Math.ceil(height * 0.08 + buttonHeight) + ""px"";
+		}
+		resize_game_canvas();
+		window.addEventListener('resize', resize_game_canvas, false);
+		window.addEventListener('orientationchange', resize_game_canvas, false);
+		// window.addEventListener('wheel', e => e.preventDefault(), { passive: false });
+		window.addEventListener(""keydown"", function (e) {
+			if ([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+				e.preventDefault();
+			}
+		}, false);
+		window.addEventListener('focus', resize_game_canvas, false);
+
+		// 
+		// HashSHA1 implementation
+		!function () { var r = function (r) { for (var n = """", t = 7; t >= 0; t--)n += ""0123456789abcdef"".charAt(r >> 4 * t & 15); return n }, n = function (r, n) { var t = (65535 & r) + (65535 & n); return (r >> 16) + (n >> 16) + (t >> 16) << 16 | 65535 & t }, e = function (r, n) { return r << n | r >>> 32 - n }, o = function (r, n, t, e) { return r < 20 ? n & t | ~n & e : r < 40 ? n ^ t ^ e : r < 60 ? n & t | n & e | t & e : n ^ t ^ e }, u = function (r) { return r < 20 ? 1518500249 : r < 40 ? 1859775393 : r < 60 ? -1894007588 : -899497514 }; window._HashSHA1 = function (f) { for (var a = function (r) { for (var n = 1 + (r.length + 8 >> 6), t = new Array(16 * n), e = 0; e < 16 * n; e++)t[e] = 0; for (e = 0; e < r.length; e++)t[e >> 2] |= r.charCodeAt(e) << 24 - e % 4 * 8; return t[e >> 2] |= 128 << 24 - e % 4 * 8, t[16 * n - 1] = 8 * r.length, t }(f), c = new Array(80), i = 1732584193, h = -271733879, v = -1732584194, A = 271733878, g = -1009589776, l = 0; l < a.length; l += 16) { for (var w = i, d = h, y = v, H = A, b = g, s = 0; s < 80; s++)c[s] = s < 16 ? a[l + s] : e(c[s - 3] ^ c[s - 8] ^ c[s - 14] ^ c[s - 16], 1), t = n(n(e(i, 5), o(s, h, v, A)), n(n(g, c[s]), u(s))), g = A, A = v, v = e(h, 30), h = i, i = t; i = n(i, w), h = n(h, d), v = n(v, y), A = n(A, H), g = n(g, b) } return r(i) + r(h) + r(v) + r(A) + r(g) } }();
+		// 
+
+		var old_preloadAndCallMain = Module._preloadAndCallMain;
+		Module._preloadAndCallMain = function () {
+			// 
+			// Delete all LiveUpdate files stored in IDBFS
+			var dir = DMSYS.GetUserPersistentDataRoot();
+			var resDir = _HashSHA1(""MonkeyMart"");
+			try {
+				FS.unlink(dir + ""/."" + resDir + ""/liveupdate.arcd"");
+			} catch (e) { }
+			try {
+				FS.unlink(dir + ""/."" + resDir + ""/liveupdate.arci"");
+			} catch (e) { }
+			try {
+				FS.unlink(dir + ""/."" + resDir + ""/liveupdate.arci.tmp"");
+			} catch (e) { }
+			try {
+				FS.unlink(dir + ""/."" + resDir + ""/liveupdate.mounts"");
+			} catch (e) { }
+			// 
+
+			if (Module._archiveLoaded) {
+				// 
+			}
+			old_preloadAndCallMain();
+		};
+	</script>
+	<script id=""engine-start"" type=""text/javascript"">
+		var currentPercentage = 0
+
+		Progress.updateProgress = function (percentage) {
+			Progress.notifyListeners(percentage);
+			if (currentPercentage > percentage) {
+				percentage = currentPercentage
+			}
+			currentPercentage = percentage
+			// var progress_bar_text = document.getElementById('progress-bar-text');
+			// progress_bar_text.innerHTML  = ""<b>"" +  Math.ceil(percentage) + ""%</b>"";
+
+			var fg = document.getElementById('progress-bar-fg');
+			fg.style.clip = ""rect(0px,"" + fg.width * percentage / 100 + ""px,"" + fg.height + ""px,"" + ""0px)""
+
+			if (isNaN(percentage)) {
+				var progress_bar_root = document.getElementById('progress-bar-root');
+				progress_bar_root.style.visibility = ""hidden"";
+			}
+		};
+		Progress.addProgress = function () {
+			var progress_bar_root = document.getElementById('progress-bar-root');
+			progress_bar_root.style.visibility = ""visible""
+		}
+		Progress.removeProgress = function () {
+			var progress_bar_root = document.getElementById('progress-bar-root');
+			progress_bar_root.style.visibility = ""hidden"";
+			// Remove any background/splash image that was set in runApp().
+			// Workaround for Safari bug DEF-3061.
+			Module.canvas.style.background = """";
+		}
+
+		EngineLoader.stream_wasm = ""false"" === ""true"";
+		EngineLoader.load(""canvas"", ""MonkeyMart"");
+	</script>
+	<script type=""text/javascript"">
+		function poki_showBanner(vBanner) {
+			PokiSDK.displayAd(document.getElementById(vBanner), '320x50');
+		}
+
+		function poki_showBigBanner(vBanner) {
+			PokiSDK.displayAd(document.getElementById(vBanner), '728x90');
+		}
+
+		function poki_hideBanner(vBanner) {
+			PokiSDK.destroyAd(document.getElementById(vBanner));
+		}
+	</script>
+	<script id=""poki-sdk-setup"" type=""text/javascript"">
+		PokiSDK.gameLoadingStart();
+		var data = {};
+		var isLoadFinished = false;
+		Progress.addListener(function (percentage) {
+			data.percentageDone = percentage / 100;
+			if (!isLoadFinished)
+				PokiSDK.gameLoadingProgress(data);
+			if (percentage == 100 && !isLoadFinished) {
+				PokiSDK.gameLoadingFinished();
+				isLoadFinished = true;
+			}
+		});
+		Module['onRuntimeInitialized'] = function () {
+			PokiSDK.init().then(() => {
+				Module.runApp(""canvas"", extra_params);
+			}).catch(() => {
+				Module.runApp(""canvas"", extra_params);
+			});
+		};
+	</script>
+    <script type=""text/javascript"" src=""GameAnalytics.js""></script>
+</body>
+</html>","Black Mart","[""idle""]","Monkey Mart","https://play-lh.googleusercontent.com/rWReIdyvDaYJPeOxn7hbC0b-96ixGpQKM_EndiQa3SUME8TtI_rNUcI4qsw5teK9mqk","idle","[]","69f50c5544b210990e94f0e7","2026-05-01T20:25:57.524000","2026-05-02T20:23:57.645000","69ee32c21259f0511987060d","elimcoen@gmail.com","false"
+"false","","<!-- Ultimate Game Stash file-->  <!-- For the regularly updating doc go to https://docs.google.com/document/d/1_FmH3BlSBQI7FGgAQL59-ZPe8eCxs35wel6JUyVaG8Q/ -->       <!DOCTYPE html> <html lang=""en-us"">   <head>     <meta charset=""utf-8"">     <meta http-equiv=""Content-Type"" content=""text/html; charset=utf-8"">     <title>BitLife - Life Simulator</title>     <style> 		body{font-family:""Myriad Pro"", Myriad ,""Helvetica Neue"",Helvetica,Arial,sans-serif}body{margin:0;padding:0;position:absolute;height:100%;width:100%;background-size:cover;font-style:regular;font-family:""Myriad Pro"", Myriad ,""Helvetica Neue"",Helvetica,Arial,sans-serif}.webgl-content{background:#333}#errorBrowserBlock,#loadingBlock,.webgl-content{padding:0;position:absolute;height:100vh;width:100vw}canvas{position:absolute;height:100%;width:100%}#gameContainer{position:absolute;height:100%;width:100%}#fullScreenButton,#logoname{height:35px;width:35px;position:absolute;bottom:5px;right:5px;background-color:transparent;background-image:url(../img/fullScreen_on.png);background-size:35px 35px;border:none;cursor:pointer}#logoname{background-image:url(../img/logo-big.png);left:15px;bottom:11px;width:141px;height:20px;background-size:141px 20px}.subtitle{color:#fff;font-size:15px;padding-bottom:15px;padding-top:15px;display:block;margin:auto;text-align:center}.logo{display:block;margin:20px auto;width:265px;height:60px}.logo-game{height:150px;width:auto;display:block;margin:auto;margin-top:5px;border-radius:20px;box-shadow:0 20px 20px -10px rgba(0,0,0,.3)}#errorBrowserBlock,#loadingBlock{background:#333;background-size:cover;z-index:1}.cover{position:absolute;z-index:-1;top:0;right:0;bottom:0;left:0;-moz-background-size:cover;-webkit-background-size:cover;background-size:cover;opacity:.5;filter:blur(16px)}#errorContent,#progressBar,#warningBrowserBlock,#warningMobileBlock{height:25vh;width:40vw;margin:auto;text-align:center}#progressBar{height:8vh;color:#fff;font-size:4vh}#errorContent,#warningBrowserBlock,#warningMobileBlock{margin-top:15vh;color:#fff;font-size:2.3vh}.browserIcons{display:inline-flex;margin-top:2vh}.browserIcons a{width:150px}#errorContent{font-size:3vh;margin-top:5vh}.centered{height:100%;max-width:770px;margin-left:auto;margin-right:auto}.webgl-content *{border:0;margin:0;padding:0}.webgl-content{height:100%;width:100%}.progress,.webgl-content .logo{position:absolute;left:50%;top:45%;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%)}.webgl-content .logo{background:url(logo.png) no-repeat center/contain;width:130px;height:130px}.webgl-content .progress{height:18px;width:141px;margin-top:90px}.webgl-content .progress .empty{background:url(TemplateData/progressEmpty.Light.png) no-repeat right/cover;float:right;width:100%;height:100%;display:inline-block}.webgl-content .progress .full{background:url(TemplateData/progressFull.Light.png) no-repeat left/cover;float:left;width:0%;height:100%;display:inline-block}.webgl-content .logo.Dark{background-image:url(logo.png)}.webgl-content .progress.Dark .empty{background-image:url(TemplateData/progressEmpty.Dark.png)}.webgl-content .progress.Dark .full{background-image:url(TemplateData/progressFull.Dark.png)}.webgl-content .footer{margin-top:5px;height:38px;line-height:38px;font-family:Helvetica,Verdana,Arial,sans-serif;font-size:18px}.fullscreen,.title,.webgl-content .footer .webgl-logo{height:100%;display:inline-block;background:transparent center no-repeat}.webgl-content .footer .webgl-logo{background-image:url(TemplateData/webgl-logo.png);width:204px;float:left}.webgl-content .footer .title{margin-right:10px;float:right}.webgl-content .footer .fullscreen{background-image:url(TemplateData/fullscreen.png);width:38px;float:right}         body,html{margin:0 auto;padding:0 auto;width:62vh;height:100%;overflow:hidden}#links2{position:absolute;right:0;bottom:0;padding:8px;list-style:none;background-color:#fff;border-top-left-radius:5px}#links2 ul{list-style-type:none;margin:0;padding:0}#links2 ul li{display:inline}#links2 ul li a{color:#000;display:inline-block;margin-right:10px;text-decoration:none}#links2 ul li a.visited{color:#000}#links2 ul li a:hover{opacity:.85} 	</style> 	  <link rel=""canonical"" href=""/""> 	<script src=""https://cdn.jsdelivr.net/gh/a456pur/seraph@ae2fcc6d6a9cd051654fcc0519080db1f79cf2a7/games/bitlife/TemplateData/UnityProgress.js""></script>     <script src=""https://cdn.jsdelivr.net/gh/a456pur/seraph@ae2fcc6d6a9cd051654fcc0519080db1f79cf2a7/games/bitlife/Build/UnityLoader.js""></script>     <script>       var unityInstance = UnityLoader.instantiate(""gameContainer"", ""https://cdn.jsdelivr.net/gh/a456pur/seraph@ae2fcc6d6a9cd051654fcc0519080db1f79cf2a7/games/bitlife/Build/BitLife.json"", {onProgress: UnityProgress});     </script>    </head>   <body>     <div id=""listLink"" style=""width: 100%; text-align: center; position: absolute; top: 0px; z-index: 999; background: rgb(119, 119, 255); opacity: 0.8;"">        <ul style=""color: #ffffff; padding: 0px; margin: 0px; font-size: 20px;"">           <li style=""padding: 5px; display: inline-block; float: left;"">           <a href="""" style=""color: #ffffff; text-decoration: none;"">Bitlife</a>           </li>           <li style=""padding: 5px; display: inline-block; float: right;"">           <a onclick=""return closeBacklinks();"" style=""color: #ffffff; text-decoration: none;"">❌</a>           </li>       </ul>   </div>   <div class=""webgl-content"">       <div id=""gameContainer"" style=""width: 100%; height: 100%;""></div>     </div>     <script>       function closeBacklinks(){         document.querySelector('#listLink').style.display = ""none"";     }     </script>   </body> </html>","Grow, ewwwww","[""idle""]","Bitlife","https://cdn.jsdelivr.net/gh/freebuisness/covers@main/70.png","idle","[]","69f504ec42c1232784c606f2","2026-05-01T19:54:20","2026-05-02T20:25:11.357000","69ee32c21259f0511987060d","elimcoen@gmail.com","false"
+"false","","<!-- Ultimate Game Stash file-->  <!-- For the regularly updating doc go to https://docs.google.com/document/d/1_FmH3BlSBQI7FGgAQL59-ZPe8eCxs35wel6JUyVaG8Q/ -->   <base href=""https://cdn.jsdelivr.net/gh/bubbls/subwaysurfersmerge/""> <html>     <meta charset=""utf-8"" />     <meta http-equiv=""Content-Type"" content=""text/html; charset=utf-8"" />      <title>Subway Surfers</title>       <link rel=""icon"" href=""img/FirstAvatar.png"">        <script src=""4399.js""></script>     <script>         window.config = {             loader: ""unity"",             debug: false,             maxRatio: 16 / 9,             minRatio: 9 / 16,             title: ""Subway Surfers: Beijing"",             unityVersion: ""2019.2.0f1"",             unityWebglBuildUrl: ""Beijing_2.json"",             fileSize: 36,             cachedDecompressedFileSizes: {                 'Beijing_2.asm.code.unityweb': 9059136,                 'Beijing_2.asm.framework.unityweb': 89457,                 'Beijing_2.asm.memory.unityweb': 1007260,                 'Beijing_2.data.unityweb': 19343219,                 'Beijing_2.wasm.code.unityweb': 7338464,                 'Beijing_2.wasm.framework.unityweb': 93787,             },         };         window.mergedBlobUrls = {};         window.assetsReady = false;          async function mergeSplitFile(fileUrlBase, numParts = 2) {             const partUrls = Array.from({ length: numParts }, (_, i) =>                  `${fileUrlBase}.part${i + 1}`             );              try {                 const responses = await Promise.all(                     partUrls.map(url => fetch(url))                 );                  if (responses.some(r => !r.ok)) {                     return null;                 }                  const parts = await Promise.all(                     responses.map(r => r.arrayBuffer())                 );                  const combinedBlob = new Blob(parts, {                     type: 'application/octet-stream'                 });                  return URL.createObjectURL(combinedBlob);             } catch (error) {                 return null;             }         }          function setupXHRInterceptor() {             if (window.xhrInterceptorInstalled) {                 return;             }                          const originalOpen = XMLHttpRequest.prototype.open;             const originalSend = XMLHttpRequest.prototype.send;              XMLHttpRequest.prototype.open = function(method, url, ...args) {                 this._url = url;                 this._method = method;                 this._args = args;                                  let finalUrl = url;                 for (const [filename, blobUrl] of Object.entries(window.mergedBlobUrls)) {                     if (url.includes(filename)) {                         finalUrl = blobUrl;                         break;                     }                 }                                  return originalOpen.call(this, method, finalUrl, ...args);             };              XMLHttpRequest.prototype.send = function(...args) {                 const xhr = this;                                  if (!window.assetsReady) {                     const checkReady = setInterval(() => {                          if (window.assetsReady) {                             clearInterval(checkReady);                             originalSend.apply(xhr, args);                         }                     }, 50);                     return;                 }                                  return originalSend.apply(this, args);             };                          window.xhrInterceptorInstalled = true;         }          async function prepareGameAssets() {             try {                 window.assetsReady = false;                 delete window.xhrInterceptorInstalled;                 window.mergedBlobUrls = {};                                  setupXHRInterceptor();                                  const filesToMerge = [                     'Beijing_2.data.unityweb',                     'Beijing_2.wasm.code.unityweb'                 ];                                   for (const filename of filesToMerge) {                     const blobUrl = await mergeSplitFile(filename, 2);                     if (blobUrl) {                         window.mergedBlobUrls[filename] = blobUrl;                     }                  }                                  window.assetsPrepared = true;                 window.assetsReady = true;                              } catch (error) {                 window.assetsPrepared = false;                 window.assetsReady = true;             }         }          prepareGameAssets();      </script> </head> <body>     <script src=""master-loader.js""></script> </body> </html>","I HATET THIS GAME, Im kidding","[""arcade""]","Subway Surfers","https://img.poki-cdn.com/cdn-cgi/image/q=78,scq=50,width=1200,height=1200,fit=cover,f=png/231cb237ab22763a61c2ca0eac6a3760/subway-surfers.png","arcade","[]","69f4b7ed92548bf610be2356","2026-05-01T14:25:49.778000","2026-05-02T20:25:17.575000","69ee32c21259f0511987060d","elimcoen@gmail.com","false"
+"false","","<!-- ultimate game stash file --> <!-- shxyder --> <html>   <head>     <link       rel=""stylesheet""       href=""https://cdn.jsdelivr.net/gh/amazing6ox/okimfine@main/TemplateData/style.css""     />     <style>       body {         overflow: hidden;         margin: 0;         padding: 0;       }       #gameContainer {         width: 100vw;         height: 100vh;         background: black;       }     </style>     <script src=""https://cdn.jsdelivr.net/gh/amazing6ox/okimfine@main/TemplateData/UnityProgress.js""></script>     <script src=""https://cdn.jsdelivr.net/gh/amazing6ox/okimfine@main/Build/UnityLoader.js""></script>     <script>       var gameInstance = UnityLoader.instantiate(         ""gameContainer"",         ""https://cdn.jsdelivr.net/gh/amazing6ox/okimfine@main/Build/death_run_wasm_v1.json"",         {           onProgress: UnityProgress,           Module: {             onRuntimeInitialized: function () {               UnityProgress(gameInstance, ""complete"");             },           },         }       );     </script>     <script src=""https://cdn.jsdelivr.net/gh/amazing6ox/okimfine@main/api.js""></script>     <style type=""text/css"">       #button {         display: none;       }       .imgb_vis {         animation: imgb-animation 7s linear;       }       @keyframes imgb-animation {         10% {           transform: translateX(0);         }         20% {           transform: translateX(100px);         }         90% {           transform: translateX(100px);         }         100% {           transform: translateX(0);         }       }     </style>   </head>   <body>     <div id=""gameContainer""></div>   </body> </html>","Death.....","[""arcade""]","Death Run 3d","https://cdn.jsdelivr.net/gh/freebuisness/covers@main/211.png","arcade","[]","69f34fa052334b0b6dd99f7d","2026-04-30T12:48:32.461000","2026-05-02T20:25:23.929000","69ee32c21259f0511987060d","elimcoen@gmail.com","false"
+"true","","<!DOCTYPE html>
+
+
+
+<!-- Ultimate Game Stash file--> 
+<!-- For the regularly updating doc go to https://docs.google.com/document/d/1_FmH3BlSBQI7FGgAQL59-ZPe8eCxs35wel6JUyVaG8Q/ -->
+
+
+<base href=""https://cdn.jsdelivr.net/gh/bubbls/UGS-Assets@main/cookieclicker/"">
+<html>
+<head>
+
+<script>
+	var VERSION=2.058;
+	var BETA=0;
+	var SAVESUFFIX='';
+	var App=typeof App==='undefined'?0:App;
+	var PRESETMODS=[];
+	var LOCAL=(App || !window.location.hostname || window.location.hostname!=='localhost' || window.location.hostname!=='127.0.0.1');
+</script>
+
+<!-- external -->
+<script type=""text/javascript"">
+	if (!LOCAL)
+	{
+		window.cookieconsent_options={""message"":""Unsurprisingly, this website uses cookies for ads and traffic analysis."",""dismiss"":""Got it!"",""learnMore"":""Learn more"",""link"":""//orteil.dashnet.org/cookieconsentpolicy.html"",""target"":""_blank"",""theme"":""//orteil.dashnet.org/cookieconsent.css"",""domain"":""dashnet.org""};
+		
+		var script=document.createElement('script');
+		script.src='//cdnjs.cloudflare.com/ajax/libs/cookieconsent2/1.0.9/cookieconsent.min.js';
+		document.head.appendChild(script);
+	}
+</script>
+
+<!--<link href=""https://fonts.googleapis.com/css?family=Kavoon&subset=latin,latin-ext"" rel=""stylesheet"" type=""text/css"">-->
+<style type=""text/css"">@font-face {font-family:Merriweather;font-style:normal;font-weight:900;src:url(/cf-fonts/s/merriweather/5.0.11/cyrillic/900/normal.woff2);unicode-range:U+0301,U+0400-045F,U+0490-0491,U+04B0-04B1,U+2116;font-display:swap;}@font-face {font-family:Merriweather;font-style:normal;font-weight:900;src:url(/cf-fonts/s/merriweather/5.0.11/cyrillic-ext/900/normal.woff2);unicode-range:U+0460-052F,U+1C80-1C88,U+20B4,U+2DE0-2DFF,U+A640-A69F,U+FE2E-FE2F;font-display:swap;}@font-face {font-family:Merriweather;font-style:normal;font-weight:900;src:url(/cf-fonts/s/merriweather/5.0.11/vietnamese/900/normal.woff2);unicode-range:U+0102-0103,U+0110-0111,U+0128-0129,U+0168-0169,U+01A0-01A1,U+01AF-01B0,U+0300-0301,U+0303-0304,U+0308-0309,U+0323,U+0329,U+1EA0-1EF9,U+20AB;font-display:swap;}@font-face {font-family:Merriweather;font-style:normal;font-weight:900;src:url(/cf-fonts/s/merriweather/5.0.11/latin/900/normal.woff2);unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+2074,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD;font-display:swap;}@font-face {font-family:Merriweather;font-style:normal;font-weight:900;src:url(/cf-fonts/s/merriweather/5.0.11/latin-ext/900/normal.woff2);unicode-range:U+0100-02AF,U+0304,U+0308,U+0329,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20CF,U+2113,U+2C60-2C7F,U+A720-A7FF;font-display:swap;}</style>
+
+<!-- Facebook Pixel Code -->
+	<script>
+	if (!LOCAL)
+	{
+		!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+		n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+		n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+		t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+		document,'script','https://connect.facebook.net/en_US/fbevents.js');
+		fbq('init', '357399801355203');
+		fbq('track', 'PageView');
+	}
+	</script>
+	<noscript><img height=""1"" width=""1"" style=""display:none""
+	src=""https://www.facebook.com/tr?id=357399801355203&ev=PageView&noscript=1""></noscript>
+<!-- end code -->
+<!-- /external -->
+
+<title>Cookie Clicker</title>
+<!--
+Code and graphics copyright Orteil, 2013-2026
+Feel free to alter this code to your liking, but please do not re-host it, do not profit from it and do not present it as your own.
+-->
+
+<meta name=""viewport"" content=""width=900, initial-scale=1"">
+<link rel=""shortcut icon"" href=""img/favicon.ico"" />
+<script src=""base64.js""></script>
+
+<link href=""style.css?v=10c"" rel=""stylesheet"" type=""text/css"">
+<script src=""main2.js?v=13g""></script>
+
+<!-- ad -->
+<script type=""text/javascript"">
+	if (LOCAL)
+	{
+		adsbygoogle=window.adsbygoogle={
+			enabled:true,
+			loaded:true,
+			push:function(){return;},
+			google_ad_client:"""",
+			enable_page_level_ads:true
+		}
+	}
+</script>
+<script src=""showads.js""></script><!-- this just detects adblockers so we can adjust the layout and play nice -->
+<script async src=""https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js""></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: ""ca-pub-5622691057838054"",
+          enable_page_level_ads: true
+     });
+</script>
+<!-- /ad -->
+
+<!--[if IE]>
+<style type=""text/css"">
+	#ifIE9{display:block;}
+</style>
+<![endif]-->
+
+<!--[if lt IE9]><script src=""excanvas.compiled.js""></script><![endif]-->
+</head>
+<body>
+
+<div id=""wrapper"">
+
+	<div id=""topBar"">
+		<!--<div><a href=""//dashnet.org"" target=""_blank"" id=""topbarDashnet"">DashNet</a></div>-->
+		<!--<div style=""width:80px;""><div style=""width:80px;height:32px;background:url(img/DashnetLogoTiny.png);position:absolute;left:0px;top:0px;pointer-events:none;opacity:0.5;""></div><a style=""opacity:0;"" href=""//dashnet.org"" target=""_blank"" id=""topbarDashnet"">DashNet</a></div>-->
+		<div style=""padding:0px;height:100%;""><a style=""background:linear-gradient(0deg,rgba(95,22,255,0.5),rgba(182,22,255,0.25));height:24px;display:inline-block;padding:8px;padding-bottom:0px;font-variant:small-caps;color:#b76fff;text-shadow:0px 1px 2px #1b0031;"" href=""//dashnet.org"" target=""_blank"" id=""topbarDashnet"">DashNet</a></div>
+		<!--<div style=""padding-left:58px;""><div style=""width:56px;height:32px;background:url(img/CookieClickerLogoTiny.png);position:absolute;left:4px;top:0px;pointer-events:none;opacity:0.5;""></div>&trade; &copy; <a href=""//orteil.dashnet.org"" target=""_blank"" id=""topbarOrteil"">Orteil</a>, 2025</div>-->
+		<!--<div><b style=""font-weight:bold;"">Cookie Clicker</b>&trade; &copy; <a href=""//orteil.dashnet.org"" target=""_blank"" id=""topbarOrteil"">Orteil</a>, 2025</div>-->
+		<div><a href="""">Cookie Clicker</a>&trade; &copy; <a href=""//orteil.dashnet.org"" target=""_blank"" id=""topbarOrteil"">Orteil</a>, 2026</div>
+		<div><a href=""https://orteil42.tumblr.com"" target=""_blank"" id=""topbarTumblr"">tumblr</a></div>
+		<div><a href=""https://orteil42.bsky.social"" target=""_blank"" id=""topbarTwitter"">bluesky</a></div>
+		<div style=""position:relative;""><div style=""width:22px;height:32px;background:url(img/discord.png);position:absolute;left:0px;top:0px;pointer-events:none;""></div><a href=""https://discordapp.com/invite/cookie"" target=""_blank"" style=""padding-left:16px;"" id=""topbarDiscord"">Discord</a></div>
+		<div style=""position:relative;""><div style=""width:25px;height:32px;background:url(img/weeHoodie.png);position:absolute;left:-2px;top:0px;pointer-events:none;""></div><a class=""blueLink"" href=""https://www.redbubble.com/people/dashnet"" target=""_blank"" style=""padding-left:12px;"" id=""topbarMerch"">Merch!</a></div>
+		<div style=""position:relative;display:none;font-weight:bold;"" id=""heralds""><div style=""position:absolute;top:-4px;width:31px;height:39px;background:url(img/heraldFlag.png);left:50%;margin-left:-15px;pointer-events:none;""></div><div id=""heraldsAmount"" style=""position:relative;z-index:10;text-shadow:0px 1px 0px #000,0px 0px 6px #ff00e4;color:#fff;"">-</div></div>
+		<div><a class=""lightblueLink"" style=""font-weight:bold;"" href=""https://play.google.com/store/apps/details?id=org.dashnet.cookieclicker"" target=""_blank"" id=""topbarMobileCC"">Cookie Clicker for Android</a></div>
+		<div><a class=""lightblueLink"" style=""font-weight:bold;"" href=""https://store.steampowered.com/app/1454400/Cookie_Clicker/"" target=""_blank"" id=""topbarSteamCC"">Cookie Clicker on Steam</a></div>
+		<!--<div><a href=""//orteil.dashnet.org/randomgen/"" target=""_blank"" id=""topbarRandomgen"">RandomGen</a></div>
+		<div><a href=""//orteil.dashnet.org/igm/"" target=""_blank"" id=""topbarIGM"">Idle Game Maker</a></div>-->
+		<div style=""float:right;position:relative;""><div id=""tinyglobe"" style=""position:absolute;top:-4px;width:22px;height:22px;background:url(img/tinyglobeSheet.gif);right:4px;top:4px;pointer-events:none;""></div><a id=""changeLanguage"" style=""font-variant:small-caps;padding-right:20px;"" onmouseover=""INTERVAL_TINYGLOBE=setInterval(function(){var tinyglobe=document.getElementById('tinyglobe');tinyglobe.style.backgroundPosition=(parseInt(tinyglobe.style.backgroundPosition)-22)+'px';},30);"" onmouseout=""clearInterval(INTERVAL_TINYGLOBE);"">Change language</a><script>document.getElementById('tinyglobe').style.backgroundPosition=(-[0,19,27][Math.floor(Math.random()*3)]*22)+'px';</script></div>
+		<div id=""topbarOtherVersions"" style=""float:right;z-index:10000000;"" class=""hoverer"">
+			Other versions
+			<div class=""hoverable"">
+				<a href=""../"" target=""_blank"" id=""linkVersionLive"">Live version</a>
+				<a href=""beta"" target=""_blank"" id=""linkVersionBeta"">Try the beta!</a>
+				<a href=""//orteil.dashnet.org/cookieclicker/v10466"" target=""_blank"" id=""linkVersionOld"">v. 1.0466</a>
+				<a href=""//orteil.dashnet.org/experiments/cookie/"" target=""_blank"">Classic</a>
+			</div>
+		</div>
+		<div id=""topBarEnd"" style=""float:right;padding:0px;""></div>
+	</div>
+	<div id=""game"">
+		<div id=""versionNumber"" class=""title""></div>
+		<script>document.getElementById('versionNumber').innerHTML='v. '+VERSION;</script>
+		<div id=""offGameMessageWrap"">
+			<div id=""offGameMessage"">
+				<div id=""loader"">
+					<div class=""spinnyBig""></div>
+					<div class=""spinnySmall""></div>
+					<div id=""loading"" class=""title"">Loading...</div>
+					<div id=""failedToLoad"" class=""title"">This is taking longer than expected.<br>
+					<div style=""font-size:65%;line-height:120%;""><!-- error -->Slow connection? If not, please make sure your javascript is enabled, then refresh.<br>
+					If problems persist, this might be on our side - wait a few minutes, then hit ctrl+f5!<!-- /error --></div></div>
+					<div id=""ifIE9"" class=""title"" style=""font-size:100%;line-height:120%;"">Your browser may not be recent enough to run Cookie Clicker.<br>You might want to update, or switch to a more modern browser such as Chrome or Firefox.</div>
+				</div>
+			</div>
+		</div>
+
+		<canvas id=""backgroundCanvas""></canvas>
+		
+		<div id=""goldenCookie"" class=""goldenCookie""></div>
+		<div id=""seasonPopup"" class=""seasonPopup""></div>
+		<div id=""shimmers""></div>
+		<div id=""alert""></div>
+		<div id=""particles""></div>
+		<div id=""sparkles"" class=""sparkles""></div>
+		<div id=""notes""></div>
+		<div id=""darken""></div>
+		<div id=""toggleBox"" class=""framed prompt""></div>
+		<div id=""promptAnchor""><div id=""prompt"" class=""framed""><div id=""promptContent""></div><div id=""promptClose"" class=""close"" style=""display:none;"" onclick=""PlaySound('snd/tickOff.mp3');Game.ClosePrompt();"">x</div></div></div>
+		<div id=""ascend"">
+			<div id=""ascendBG""></div>
+			<div id=""ascendZoomable""><div id=""ascendContent""><div id=""ascendUpgrades"" style=""position:absolute;""></div></div></div>
+			<div id=""ascendOverlay""></div>
+		</div>
+		
+		<div id=""debug""><div id=""devConsole"" class=""framed""></div><div id=""debugLog""></div></div>
+		
+		<div id=""sectionLeft"" class=""inset"">
+			<canvas id=""backgroundLeftCanvas"" style=""z-index:5;""></canvas>
+			<div class=""blackFiller""></div>
+			<div class=""blackGradient""></div>
+			<div id=""sectionLeftInfo""></div>
+			<div id=""cookies"" class=""title""></div>
+			<div id=""bakeryNameAnchor""><div id=""bakeryName"" class=""title""></div></div>
+			<div id=""specialPopup"" class=""framed prompt offScreen""></div>
+			<div id=""buffs"" class=""crateBox""></div>
+			<div id=""cookieAnchor"">
+				<button id=""bigCookie""></button>
+				<div id=""cookieNumbers""></div>
+			</div>
+			<div id=""sectionLeftExtra""></div>
+		</div>
+
+		<div class=""separatorLeft"" id=""leftBeam""></div>
+		<div class=""separatorRight"" id=""rightBeam""></div>
+
+		<div id=""sectionMiddle"" class=""inset"">
+			<div id=""comments"" class=""inset title"">
+				<div id=""prefsButton"" class=""panelButton""><div class=""subButton"">Options</div></div>
+				<div id=""statsButton"" class=""panelButton""><div>Stats</div></div>
+				<div id=""logButton"" class=""panelButton""><div>Info</div><div id=""checkForUpdate"">New update!</div></div>
+				<div id=""legacyButton"" class=""panelButton""><div class=""subButton"">Legacy</div><div id=""ascendMeterContainer"" class=""smallFramed meterContainer""><div id=""ascendMeter"" class=""meter filling""></div></div><div class=""roundedPanel"" id=""ascendNumber""></div><div id=""ascendTooltip"" class=""framed""></div></div>
+				<div id=""commentsText"">
+					<div id=""commentsText1"" class=""commentsText""></div>
+					<div id=""commentsText2"" class=""commentsText""></div>
+				</div>
+				<div class=""separatorBottom""></div>
+			</div>
+			<div id=""centerArea"">
+				<div id=""buildingsTitle"" class=""inset title zoneTitle"">Buildings</div>
+				<div id=""buildingsMaster""></div>
+				<div id=""rows""></div>
+				<div id=""menu""></div>
+			</div>
+		</div>
+		
+		<div id=""sectionRight"" class=""inset"">
+			<!-- ad -->
+			<div class=""ifNoAds"" style=""width:300px;text-align:center;padding:8px 0px;background:rgba(0,0,0,0.95);font-size:10px;opacity:0.5;text-shadow:0px 0px 2px #000,0px 1px 0px #000;text-align:center;"">
+				<!--Cookie Clicker is mainly supported by ads.<br>Consider unblocking our site!-->
+			</div>
+			<div id=""smallSupport"" style=""width:300px;text-align:center;padding-bottom:40px;background:rgba(0,0,0,0.5);position:relative;z-index:100;"">
+				
+				<!-- Cookie Clicker Header Responsive -->
+				<ins class=""adsbygoogle""
+					 style=""display:block;margin:auto;width:300px;max-height:300px;overflow:hidden;""
+					 data-ad-client=""ca-pub-5622691057838054""
+					 data-ad-slot=""4603093678""
+					 data-ad-format=""rectangle""
+					 data-full-width-responsive=""true""></ins>
+				<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+				</script>
+				
+				<script>
+				if (!LOCAL)
+				{
+					document.addEventListener('DOMContentLoaded',function(){
+						setTimeout(function(){
+							var adSlot=document.querySelector(""ins[data-ad-slot='4603093678']"");
+							if(typeof adsbygoogle == 'undefined' || (adSlot && adSlot.getAttribute('data-ad-status')=='unfilled'))
+							{
+								var backfill=document.createElement('div');backfill.innerHTML='<iframe style=""border:none;"" src=""https://serve.app.playsaurus.com/ad-campaigns/9bf4f856-f25c-430d-88b3-b61dabefe175/embed"" width=""300"" height=""250"" sandbox=""allow-scripts allow-popups allow-popups-to-escape-sandbox"" referrerpolicy=""no-referrer-when-downgrade""></iframe>';
+								adSlot.parentNode.replaceChild(backfill,adSlot);
+							}
+						},3000);
+					});
+				}
+				</script>
+				
+				<div class=""supportComment"">&#11165; Sponsored link &#11165;</div>
+			</div>
+			<!-- /ad -->
+			<div id=""store"">
+				<div id=""storeTitle"" class=""inset title zoneTitle"">Store</div>
+				<div id=""toggleUpgrades"" class=""storeSection upgradeBox""></div>
+				<div id=""techUpgrades"" class=""storeSection upgradeBox""></div>
+				<div id=""vaultUpgrades"" class=""storeSection upgradeBox""></div>
+				<div id=""upgrades"" class=""storeSection upgradeBox""></div>
+				<div id=""products"" class=""storeSection""></div>
+			</div>
+			<!-- ad -->
+			<div id=""detectAds"" class=""adBanner"" style=""background:transparent;width:1px;height:1px;""></div>
+			<div id=""support"" style=""margin-top:130px;"">
+				<div class=""supportComment"">&#11167; Sponsored links &#11167;</div>
+				<div style=""position:relative;"">
+				
+					<div style=""position:relative;z-index:100;min-height:250px;"">
+					
+						<!-- Cookie Clicker Responsive -->
+						<ins class=""adsbygoogle""
+							 style=""display:block;margin:auto;""
+							 data-ad-client=""ca-pub-5622691057838054""
+							 data-ad-slot=""5257699793""
+							 data-ad-format=""auto""
+							 data-full-width-responsive=""true""></ins>
+						<script>
+						(adsbygoogle = window.adsbygoogle || []).push({});
+						</script>
+				
+						<script>
+						if (!LOCAL)
+						{
+							document.addEventListener('DOMContentLoaded',function(){
+								setTimeout(function(){
+									var adSlot=document.querySelector(""ins[data-ad-slot='5257699793']"");
+									if(typeof adsbygoogle == 'undefined' || (adSlot && adSlot.getAttribute('data-ad-status')=='unfilled'))
+									{
+										var backfill=document.createElement('div');backfill.innerHTML='<iframe style=""border:none;"" src=""https://serve.app.playsaurus.com/ad-campaigns/9bf13979-1171-4526-8e95-dcb2e0debbf9/embed"" width=""300"" height=""600"" sandbox=""allow-scripts allow-popups allow-popups-to-escape-sandbox"" referrerpolicy=""no-referrer-when-downgrade""></iframe>';
+										adSlot.parentNode.replaceChild(backfill,adSlot);
+									}
+								},3000);
+							});
+						}
+						</script>
+						
+						<div style=""height:32px;""></div>
+						
+						<div id=""adPlaysaurus""></div>
+						
+						<div style=""height:32px;""></div>
+						
+						<div id=""adAQ""></div>
+						
+						<script>
+						if (!LOCAL)
+						{
+							document.addEventListener('DOMContentLoaded',function(){
+								<!-- Playsaurus banner -->
+								document.getElementById('adPlaysaurus').innerHTML='<iframe class=""ad"" style=""border:none;"" src=""https://serve.app.playsaurus.com/ad-campaigns/9bf75822-eb31-4650-90d3-3efeeb3d09c6/embed"" width=""300"" height=""64"" sandbox=""allow-scripts allow-popups allow-popups-to-escape-sandbox"" referrerpolicy=""no-referrer-when-downgrade""></iframe>';
+								
+							
+								<!-- AdventureQuest Worlds banner -->
+								document.getElementById('adAQ').innerHTML='<a class=""ad"" id=""aqad"" href=""http://www.aq.com/landing/cookie/?utm_campaign=AQW_CookieClicker&utm_source=CookieClicker"" target=""_blank"" title=""AdventureQuest Worlds"" style=""background:url(img/AQWorlds_CookieClicker_300x40.png) no-repeat;width:300px;height:64px;display:block;position:relative;margin:0px auto;""></a>';
+							});
+						}
+						</script>
+						
+					</div>
+					
+				</div>
+			</div>
+			<!-- /ad -->
+		</div>
+		
+		<div id=""tooltipAnchor""><div id=""tooltip"" class=""framed"" onMouseOut=""Game.tooltip.hide();""></div></div>
+		<div id=""preloadImages"" style=""display:none;""></div>
+
+	</div>
+
+</div>
+
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML=""window.__CF$cv$params={r:'9bf37e3c0d41c1c8',t:'MTc2ODYyODE2Nw=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);"";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>","YUM YUM YUM COOKIE","[""clicker"",""idle""]","Cookie Clicker","https://cdn.jsdelivr.net/gh/freebuisness/covers@main/82.png","clicker","[]","69f34cc5278dc0c543291576","2026-04-30T12:36:21.530000","2026-05-02T20:25:30.152000","69ee32c21259f0511987060d","elimcoen@gmail.com","false"
+"true","","<!DOCTYPE html>
+
+
+<!-- Ultimate Game Stash file--> 
+<!-- For the regularly updating doc go to https://docs.google.com/document/d/1_FmH3BlSBQI7FGgAQL59-ZPe8eCxs35wel6JUyVaG8Q/ -->
+
+
+
+<html>
+  <head>
+    <base href=""https://cdn.jsdelivr.net/gh/bubbls/UGS-Assets@main/baldis-basics/"">
+    <title>Baldi's Basics</title>
+    <link rel=""icon"" type=""image/png"" href=""/favicon.ico"" />
+    <script type=""text/javascript"" src=""/js/main.js""></script>
+
+    <link rel=""stylesheet"" href=""TemplateData/style.css"" />
+     <script>
+    window.fileMergerConfig = {
+      files: [
+        { name: 'baldi.data.unityweb', parts: 2 },
+        { name: 'baldi.wasm.code.unityweb', parts: 1 },
+        { name: 'baldi.wasm.framework.unityweb', parts: 1 },
+      ],
+      basePath: 'unity/',
+      debug: true
+    };
+  </script>
+    <script src=""https://cdn.jsdelivr.net/gh/bubbls/UGS-Assets@main/merge.js""></script>
+    <script src=""TemplateData/UnityProgress.js""></script>
+    <script src=""baldi.js""></script>
+    <script>
+      var gameInstance = UnityLoader.instantiate(""gameContainer"", ""baldi.json"", {
+        onProgress: UnityProgress,
+        Module: {
+          onRuntimeInitialized: function () {
+            UnityProgress(gameInstance, ""complete"");
+          },
+        },
+      });
+    </script>
+  </head>
+  <body style=""margin: 0;"">
+    <div class=""webgl-content"">
+      <div id=""unityContainer"" style=""width: 960px; height: 600px; padding: 0px; margin: 0px; border: 0px; position: relative; background: rgb(35, 31, 32);"">
+        <div id=""gameContainer"" style=""width: 800px; height: 560px; margin: auto;""></div>
+      </div>
+      <script src=""firebase-app.js""></script>
+    </div>
+  </body>
+</html>","Ik Math Sucks......","[""horror""]","Baldis Basics","https://cdn.jsdelivr.net/gh/freebuisness/covers@main/65.png","horror","[]","69f34b047dd9458de2b915ab","2026-04-30T12:28:52.874000","2026-05-02T20:25:03.937000","69ee32c21259f0511987060d","elimcoen@gmail.com","false"
+"false","","<!-- Ultimate Game Stash file-->  <!-- For the regularly updating doc go to https://docs.google.com/document/d/1_FmH3BlSBQI7FGgAQL59-ZPe8eCxs35wel6JUyVaG8Q/ -->   <!DOCTYPE html> <html lang=""en"">  <head>     <base href=""https://cdn.jsdelivr.net/gh/genizy/soundboard@main/"">     <script async src=""https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5521219086088837"" crossorigin=""anonymous""></script>     <script async src=""https://www.googletagmanager.com/gtag/js?id=G-""></script>          <meta charset=""UTF-8"">     <title>Soundboard</title>     <script src=""sounds.js"" type=""module""></script>     <script src=""main.js"" type=""module""></script>     <link href=""style.css"" rel=""stylesheet""> </head>  <body>     <div id=""controls"">         <button id=""toggleFavorites"" class=""control-button favorites-toggle"">⭐ Favorites: OFF</button>         <button id=""toggleButton"" class=""control-button overlap-toggle"">🔇 Overlap: OFF</button>         <button id=""stopButton"" class=""control-button stop-button"">⏹️ Stop All Sounds</button>         <input id=""searchInput"" type=""text"" placeholder=""Search sounds..."">     </div>     <div id=""soundboard""></div> </body>  </html>","Play Sounds","[""other""]","Soundboard","https://cdn.jsdelivr.net/gh/freebuisness/covers@main/179.png","other","[]","69f3481447c46a95b3bcad3e","2026-04-30T12:16:20.209000","2026-05-02T20:24:47.646000","69ee32c21259f0511987060d","elimcoen@gmail.com","false"
+"true",""," <!-- Ultimate Game Stash file-->  <!-- For the regularly updating doc go to https://docs.google.com/document/d/1_FmH3BlSBQI7FGgAQL59-ZPe8eCxs35wel6JUyVaG8Q/ -->    <html>  <head> 	<meta charset=""UTF-8""> 	<title>Basket Random</title> 	<meta name=""viewport"" 		content=""width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no""> 	<meta name=""generator"" content=""Construct 3""> 	<link rel=""stylesheet"" 		href=""https://cdn.jsdelivr.net/gh/bubbls/ruffle@1520d90d7b2994737acd8f7a633d018f63c22ca7/style.css"" 		type=""text/css""> 	<script> 		window.addEventListener(""keydown"", function(e) { // space and arrow keys if([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) { e.preventDefault(); } }, false);  	</script> </head>  <body> 	<div id=""fb-root""></div> 	<script 		src=""https://cdn.jsdelivr.net/gh/bubbls/ruffle@1520d90d7b2994737acd8f7a633d018f63c22ca7/box2d.js""> 	</script> <noscript> 		<div id=""notSupportedWrap""> 			<h2 id=""notSupportedTitle"">This content requires JavaScript</h2> 			<p class=""notSupportedMessage"">JavaScript appears to be disabled. Please enable it to view this content.</p> 		</div> 	</noscript> 	<script 		src=""https://cdn.jsdelivr.net/gh/bubbls/ruffle@1520d90d7b2994737acd8f7a633d018f63c22ca7/suppoortcheck.js""> 	</script> 	<script 		src=""https://cdn.jsdelivr.net/gh/bubbls/ruffle@1520d90d7b2994737acd8f7a633d018f63c22ca7/offclient.js"" 		type=""module""></script> 	<script 		src=""https://cdn.jsdelivr.net/gh/bubbls/ruffle@1520d90d7b2994737acd8f7a633d018f63c22ca7/main.js"" 		type=""module""></script> 	<script 		src=""https://cdn.jsdelivr.net/gh/bubbls/ruffle@1520d90d7b2994737acd8f7a633d018f63c22ca7/registersw.js"" 		type=""module""></script> 	<script src=""https://cdn.jsdelivr.net/gh/bubbls/ruffle@1520d90d7b2994737acd8f7a633d018f63c22ca7/api.js""></script> </body>  </html>","2 Player Basketball Game","[""multiplayer"",""arcade""]","Basket Random","https://cdn.jsdelivr.net/gh/freebuisness/covers@main/66.png","multiplayer","[]","69f2be1c2a8d69d747098fc8","2026-04-30T02:27:40.115000","2026-05-02T20:24:40.343000","69ee32c21259f0511987060d","elimcoen@gmail.com","false"
+"false","","<!DOCTYPE html>
+
+
+
+<!-- Ultimate Game Stash file--> 
+<!-- For the regularly updating doc go to https://docs.google.com/document/d/1_FmH3BlSBQI7FGgAQL59-ZPe8eCxs35wel6JUyVaG8Q/ -->
+
+
+
+
+<base href=""https://cdn.jsdelivr.net/gh/bubbls/UGS-Assets@main/tomb/"">
+<html lang=""en"">
+<head>
+  <meta charset=""utf-8"">
+  <title>New Tab</title>
+  <link href=""style.css"" rel=""stylesheet"">
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      overflow: hidden; /* prevent scrollbars */
+      background: black; /* optional: black background */
+    }
+    #gameContainer {
+      width: 100vw;
+      height: 100vh;
+    }
+  </style>
+</head>
+<body dir=""ltr"">
+  <script src=""UnityProgress.js""></script>
+  <script src=""UnityLoader.js""></script>
+  <script>
+    var gameInstance = UnityLoader.instantiate(""gameContainer"", ""totm.json"", {
+      onProgress: UnityProgress,
+      Module: {
+        onRuntimeInitialized: function() {
+          UnityProgress(gameInstance, ""complete"");
+        }
+      }
+    });
+  </script>
+
+  <div class=""webgl-content"">
+    <div id=""gameContainer""></div>
+  </div>
+</body>
+</html>","Classic Game CLASSIC","[""arcade""]","Tomb of the mask","https://cdn.jsdelivr.net/gh/freebuisness/covers@main/109.png","arcade","[]","69f2b95a0fc928c42cf96993","2026-04-30T02:07:22.952000","2026-05-02T20:24:31.727000","69ee32c21259f0511987060d","elimcoen@gmail.com","false"
+"true","","<!DOCTYPE html>
+
+
+<!-- Ultimate Game Stash file--> 
+<!-- For the regularly updating doc go to https://docs.google.com/document/d/1_FmH3BlSBQI7FGgAQL59-ZPe8eCxs35wel6JUyVaG8Q/ -->
+
+
+
+<html lang=""en-us"">
+  <head>
+    <base href=""https://cdn.jsdelivr.net/gh/bubbls/UGS-Assets@main/slope%203/"">
+     <head>
+    <meta charset=""utf-8"">
+    <meta http-equiv=""Content-Type"" content=""text/html; charset=utf-8"">
+    <meta name=""viewport"" content=""width=device-width, initial-scale=1.0, user-scalable=no"">
+    <title>Slope 3</title>
+
+
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #000;
+        }
+        .webgl-content {
+            width: 100% !important;
+            height: 100% !important;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        #gameContainer {
+            width: 100% !important;
+            height: 100% !important;
+            flex-grow: 1;
+        }
+        .footer {
+            /* Keep footer hidden or minimal */
+            height: 5%;
+            width: 100%;
+            display: none; 
+        }
+    </style>
+
+    <script>
+      window.fileMergerConfig = {
+        files: [
+          // Assuming the data file referenced in build.json is called 'build.data' or similar.
+          // You must confirm the exact name of the data file that was split.
+          { name: 'Slope3.data.unityweb', parts: 2 } 
+        ],
+        // All these files are likely in the root, where build.json is.
+        basePath: '', 
+        debug: true
+      };
+    </script>
+
+    <script>
+    (function() {
+      'use strict';
+      const config = Object.assign({files: [], basePath: '', debug: true}, window.fileMergerConfig || {});
+      window.mergedFiles = window.mergedFiles || {};
+      const mergeStatus = {};
+
+      function log(...args) { if (config.debug) console.log('[FileMerger]', ...args); }
+      function error(...args) { console.error('[FileMerger]', ...args); }
+      function normalizeUrl(url) { try { return decodeURIComponent(url.toString().split('?')[0]); } catch (e) { return url; } }
+      function urlsMatch(url1, url2) {
+        const n1 = normalizeUrl(url1), n2 = normalizeUrl(url2);
+        // Special case for Unity 2018 and older: they append a hash to the data file.
+        // We only check for the base name.
+        const name1 = n1.split('/').pop().split('?')[0];
+        const name2 = n2.split('/').pop().split('?')[0];
+
+        for (const f of config.files) {
+            if (name1.startsWith(f.name) && name1.length >= f.name.length) return f.name;
+            if (name2.startsWith(f.name) && name2.length >= f.name.length) return f.name;
+        }
+
+        return null;
+      }
+
+      async function mergeSplitFiles(filePath, partsCount) {
+        try {
+          const parts = [];
+          for (let i = 1; i <= partsCount; i++) parts.push(`${filePath}.part${i}`);
+          log(`Merging ${filePath} from ${partsCount} parts...`);
+          const responses = await Promise.all(parts.map(p => window.originalFetch(p)));
+          for (const r of responses) if (!r.ok) throw new Error(`Part missing: ${r.url} (${r.status})`);
+          const buffers = await Promise.all(responses.map(r => r.arrayBuffer()));
+          const totalLen = buffers.reduce((acc, b) => acc + b.byteLength, 0);
+          const merged = new Uint8Array(totalLen);
+          let offset = 0;
+          for (const b of buffers) { merged.set(new Uint8Array(b), offset); offset += b.byteLength; }
+          log(`✅ Merged: ${filePath} (${(totalLen/1024/1024).toFixed(2)} MB)`);
+          return merged.buffer;
+        } catch (e) { error(e); throw e; }
+      }
+
+      function shouldIntercept(url) {
+        const s = normalizeUrl(url);
+        if (s.includes('.part')) return null;
+
+        const matchedName = urlsMatch(s, s);
+        if (matchedName) return matchedName;
+        
+        return null;
+      }
+
+      function getMerged(name) {
+        if (window.mergedFiles[name]) return window.mergedFiles[name];
+        // Check by partial key, useful for versioned names like `build.data.12345`
+        for (const [k, v] of Object.entries(window.mergedFiles)) {
+             if (k.startsWith(name)) return v;
+        }
+        return null;
+      }
+
+      if (!window.originalFetch) window.originalFetch = window.fetch;
+      window.fetch = function(url, ...args) {
+        const name = shouldIntercept(url);
+        if (name) {
+          log('Intercepting fetch:', name);
+          return new Promise((resolve, reject) => {
+            const t = setInterval(() => {
+              const b = getMerged(name);
+              if (b) {
+                clearInterval(t);
+                const type = name.endsWith('.wasm') ? 'application/wasm' : 'application/octet-stream';
+                resolve(new Response(b, {status: 200, headers: {'Content-Type': type}}));
+              }
+              else if (mergeStatus[name] === 'failed') { clearInterval(t); reject(new Error('Merge failed')); }
+            }, 50);
+          });
+        }
+        return window.originalFetch.call(this, url, ...args);
+      }
+
+      if (!window.OriginalXMLHttpRequest) window.OriginalXMLHttpRequest = window.XMLHttpRequest;
+      window.XMLHttpRequest = function(opts) {
+        const xhr = new window.OriginalXMLHttpRequest(opts);
+        const open = xhr.open;
+        xhr.open = function(m, u, ...a) { this._url = u; return open.call(this, m, u, ...a); };
+        xhr.send = function(...a) {
+          const name = shouldIntercept(this._url);
+          if (name) {
+            log('Intercepting XHR:', name);
+            const t = setInterval(() => {
+              const b = getMerged(name);
+              if (b) {
+                clearInterval(t);
+                Object.defineProperties(xhr, { status: {value: 200}, response: {value: b}, readyState: {value: 4} });
+                if (xhr.onload) xhr.onload({type: 'load', target: xhr});
+              }
+            }, 50);
+            return;
+          }
+          return window.OriginalXMLHttpRequest.prototype.send.apply(this, a);
+        }
+        return xhr;
+      }
+
+      async function start() {
+        config.files.forEach(f => {
+           const path = config.basePath + f.name;
+           mergeStatus[f.name] = 'merging';
+           mergeSplitFiles(path, f.parts).then(b => {
+             // Store the buffer using the name of the file being requested by Unity
+             window.mergedFiles[f.name] = b; 
+             // Also store it using the full path, just in case
+             window.mergedFiles[path] = b;
+             mergeStatus[f.name] = 'ready';
+           }).catch(() => mergeStatus[f.name] = 'failed');
+        });
+      }
+      start();
+    })();
+    </script>
+
+
+    <script src=""UnityLoader.js""></script>
+    <script src=""UnityProgress.js""></script>
+    
+    <script>
+        var gameInstance = UnityLoader.instantiate(""gameContainer"", ""build.json"", {
+            onProgress: UnityProgress,
+            Module: {
+                onRuntimeInitialized: function() {
+                    UnityProgress(gameInstance, ""complete"")
+                }
+            }
+        });
+    </script>
+    </head>
+
+<body>
+    <div class=""webgl-content"">
+        <div id=""gameContainer"" style=""width: 100%; height: 95%; margin: auto;""></div>
+        <div class=""footer"">
+            </div>
+        
+        <script>
+            function UnityCallJs() {
+                console.log(""unity call!"");
+            }
+
+            function UnityCallPlayJs() {
+                console.log(""untiy call Play game"");
+            }
+
+            function UnityCallLeaderboardJs() {
+                console.log(""untiy call On Leaderboard"");
+            }
+
+            function UnityCallAgainJs() {
+                console.log(""unity call Again"");
+            }
+
+            function UnityCallEndgameJs() {
+                console.log(""untiy call end game"");
+
+            }
+
+            function UnityCallBackHomeJs() {
+                console.log(""untiy call backHome"");
+            }
+
+            function UnityCallChangeDayLeaderboardJs() {
+                console.log(""untiy call change day leaderboard"");
+            }
+
+            function UnityCallCloseLeaderboardJs() {
+                console.log(""untiy call close leaderboard"");
+            }
+        </script>
+
+    </div>
+</body>
+
+</html>","Roll down a SLOPEE","[""arcade""]","Slope ","https://cdn.jsdelivr.net/gh/freebuisness/covers@main/198.png","arcade","[]","69f2b4d14e089e97f14693f6","2026-04-30T01:48:01.792000","2026-05-02T20:24:25.829000","69ee32c21259f0511987060d","elimcoen@gmail.com","false"
+"true","","<!DOCTYPE html>
+
+
+<!-- Ultimate Game Stash file--> 
+<!-- For the regularly updating doc go to https://docs.google.com/document/d/1_FmH3BlSBQI7FGgAQL59-ZPe8eCxs35wel6JUyVaG8Q/ -->
+
+
+
+<html lang=""en"">
+  <head> 
+    <base href=""https://cdn.jsdelivr.net/gh/selenite-cc/selenite-old@9c743188888af0986c8c7b293dbac8f9e421a4ee/retrobowl/"">
+ <link rel=""icon"" type=""image/x-icon"" href=""retrobowl.ico"" />
+ <script src=""/js/all.js""></script>
+
+    <!-- Generated by GameMaker:Studio http://www.yoyogames.com/gamemaker/studio -->
+    <meta http-equiv=""X-UA-Compatible"" content=""IE=edge"" />
+    <meta http-equiv=""pragma"" content=""no-cache"" />
+    <meta name=""apple-mobile-web-app-capable"" content=""yes"" />
+    <meta
+      name=""viewport""
+      content=""width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0""
+    />
+    <meta
+      name=""apple-mobile-web-app-status-bar-style""
+      content=""black-translucent""
+    />
+    <meta charset=""utf-8"" />
+
+    <!-- Set the title bar of the page -->
+    <title>Retro Bowl</title>
+
+    <!-- Set the background colour of the document -->
+    <style>
+      body {
+        background: #000;
+        color: #cccccc;
+        margin: 0px;
+        padding: 0px;
+        border: 0px;
+      }
+      canvas {
+        image-rendering: optimizeSpeed;
+        -webkit-interpolation-mode: nearest-neighbor;
+        -ms-touch-action: none;
+        margin: 0px;
+        padding: 0px;
+        border: 0px;
+      }
+      :-webkit-full-screen #canvas {
+        width: 100%;
+        height: 100%;
+      }
+      div.gm4html5_div_class {
+        margin: 0px;
+        padding: 0px;
+        border: 0px;
+      }
+      /* START - Login Dialog Box */
+      div.gm4html5_login {
+        padding: 20px;
+        position: absolute;
+        border: solid 2px #000000;
+        background-color: #404040;
+        color: #00ff00;
+        border-radius: 15px;
+        box-shadow: #101010 20px 20px 40px;
+      }
+      div.gm4html5_cancel_button {
+        float: right;
+      }
+      div.gm4html5_login_button {
+        float: left;
+      }
+      div.gm4html5_login_header {
+        text-align: center;
+      }
+      /* END - Login Dialog Box */
+      :-webkit-full-screen {
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class=""gm4html5_div_class"" id=""gm4html5_div_id"">
+      <img
+        src=""html5game/splash.png""
+        id=""GM4HTML5_loadingscreen""
+        alt=""GameMaker:HTML5 loading screen""
+        style=""display: none""
+      />
+      <!-- Create the canvas element the game draws to -->
+      <canvas id=""canvas"" width=""960"" height=""540"">
+        <p>Your browser doesn't support HTML5 canvas.</p>
+      </canvas>
+    </div>
+
+    <!-- Run the game code -->
+    <script
+      type=""text/javascript""
+      src=""html5game/RetroBowl.js?WAEAC=1633155445""
+    ></script>
+    <script>
+      window.onload = GameMaker_Init;
+    </script>
+  <script src=""/html/settings/js/index.js""></script> 
+   </body>
+</html>","Football, Boring old AMERICAN football","[""arcade""]","Retro Bowl","https://cdn.jsdelivr.net/gh/freebuisness/covers@main/33.png","arcade","[]","69f2b128605bb8c2dd67dccb","2026-04-30T01:32:24.832000","2026-05-02T20:24:19.052000","69ee32c21259f0511987060d","elimcoen@gmail.com","false"
+"false","","<!DOCTYPE html>
+<html>
+<head>
+    <base href=""https://cdn.jsdelivr.net/gh/AZURE2077/polytrack-beta-0.6.0@main/"">
+    <script>
+        var NativeImage = window.Image;
+        window.Image = function() {
+            var img = arguments.length ? new NativeImage(arguments[0], arguments[1]) : new NativeImage();
+            img.crossOrigin = ""anonymous"";
+            return img;
+        };
+        window.Image.prototype = NativeImage.prototype;
+        var _createElement = document.createElement.bind(document);
+        document.createElement = function(tag) {
+            var el = _createElement.apply(document, arguments);
+            if (typeof tag === ""string"" && tag.toLowerCase() === ""img"") {
+                el.crossOrigin = ""anonymous"";
+            }
+            return el;
+        };
+        var _audioContexts = [];
+        var _gestured = false;
+        function _resumeAll() {
+            _gestured = true;
+            _audioContexts.forEach(function(ctx) {
+                if (ctx.state === ""suspended"") ctx.resume();
+            });
+        }
+        document.addEventListener(""click"", _resumeAll, true);
+        document.addEventListener(""keydown"", _resumeAll, true);
+        document.addEventListener(""touchstart"", _resumeAll, true);
+        var NativeAC = window.AudioContext || window.webkitAudioContext;
+        if (NativeAC) {
+            var PatchedAC = function() {
+                var ctx = arguments.length ? new NativeAC(arguments[0]) : new NativeAC();
+                _audioContexts.push(ctx);
+                if (_gestured && ctx.state === ""suspended"") ctx.resume();
+                return ctx;
+            };
+            PatchedAC.prototype = NativeAC.prototype;
+            try { window.AudioContext = PatchedAC; } catch(e) {}
+            try { window.webkitAudioContext = PatchedAC; } catch(e) {}
+        }
+        var cdnBase = document.querySelector(""base"").href;
+        var PROXY = ""vpskodub.tmena1565.workers.dev"";
+        var workerPatchLines = [
+            'var __cdnBase = ""' + cdnBase + '"";',
+            'var __proxy = ""' + PROXY + '"";',
+            'function __resolveUrl(url) {',
+            '    if (typeof url !== ""string"") return url;',
+            '    if (url.indexOf(""http"") !== 0 && url.indexOf(""blob:"") !== 0 && url.indexOf(""data:"") !== 0 && url.indexOf(""//"") !== 0) {',
+            '        return __cdnBase + url.replace(/^\\//, """");',
+            '    }',
+            '    return url.replace(""vps.kodub.com"", __proxy);',
+            '}',
+            'var __origFetch = self.fetch.bind(self);',
+            'self.fetch = function(input, init) {',
+            '    if (typeof input === ""string"") input = __resolveUrl(input);',
+            '    else if (input instanceof Request) input = new Request(__resolveUrl(input.url), input);',
+            '    return __origFetch(input, init);',
+            '};',
+            'var __origXHROpen = XMLHttpRequest.prototype.open;',
+            'XMLHttpRequest.prototype.open = function(method, url) {',
+            '    var args = Array.prototype.slice.call(arguments);',
+            '    args[1] = __resolveUrl(url);',
+            '    return __origXHROpen.apply(this, args);',
+            '};'
+        ];
+        var workerPatch = workerPatchLines.join(""\n"") + ""\n"";
+        window.simulationWorkerReady = fetch(cdnBase + ""simulation_worker.bundle.js"")
+            .then(function(res) { return res.text(); })
+            .then(function(text) {
+                text = text.split(""replacethisplease"").join(cdnBase);
+                text = text.replace(
+                    /importScripts\(\s*[""'](?!https?:\/\/|blob:|data:)([^""']+)[""']\s*\)/g,
+                    function(match, path) { return 'importScripts(""' + cdnBase + path + '"")'; }
+                );
+                text = workerPatch + text;
+                return ""data:application/javascript,"" + encodeURIComponent(text);
+            });
+        var ogWorker = window.Worker;
+        window.Worker = function(scriptUrl, options) {
+            if (typeof scriptUrl === ""string"" && scriptUrl.toLowerCase() === ""simulation_worker.bundle.js"") {
+                var realWorker = null;
+                var pendingPosts = [];
+                var listeners = {};
+                var wrapper = {
+                    postMessage: function() {
+                        var args = arguments;
+                        if (realWorker) realWorker.postMessage.apply(realWorker, args);
+                        else pendingPosts.push(args);
+                    },
+                    terminate: function() { if (realWorker) realWorker.terminate(); },
+                    addEventListener: function(type, fn, opts) {
+                        if (!listeners[type]) listeners[type] = [];
+                        listeners[type].push({ fn: fn, opts: opts });
+                        if (realWorker) realWorker.addEventListener(type, fn, opts);
+                    },
+                    removeEventListener: function(type, fn) {
+                        if (realWorker) realWorker.removeEventListener(type, fn);
+                    }
+                };
+                Object.defineProperty(wrapper, ""onmessage"", {
+                    get: function() { return this._onmessage; },
+                    set: function(fn) { this._onmessage = fn; if (realWorker) realWorker.onmessage = fn; }
+                });
+                Object.defineProperty(wrapper, ""onerror"", {
+                    get: function() { return this._onerror; },
+                    set: function(fn) { this._onerror = fn; if (realWorker) realWorker.onerror = fn; }
+                });
+                window.simulationWorkerReady.then(function(dataUri) {
+                    realWorker = new ogWorker(dataUri, options);
+                    realWorker.onmessage = function(e) { if (wrapper._onmessage) wrapper._onmessage(e); };
+                    realWorker.onerror   = function(e) { if (wrapper._onerror)   wrapper._onerror(e); };
+                    Object.keys(listeners).forEach(function(type) {
+                        listeners[type].forEach(function(item) {
+                            realWorker.addEventListener(type, item.fn, item.opts);
+                        });
+                    });
+                    pendingPosts.forEach(function(args) {
+                        realWorker.postMessage.apply(realWorker, args);
+                    });
+                });
+                return wrapper;
+            }
+            return new ogWorker(scriptUrl, options);
+        };
+        window.Worker.prototype = ogWorker.prototype;
+        var ogFetch = window.fetch;
+        window.fetch = function(input, init) {
+            if (typeof input === ""string"") {
+                input = input.replace(""vps.kodub.com"", PROXY);
+            } else if (input instanceof Request) {
+                input = new Request(input.url.replace(""vps.kodub.com"", PROXY), input);
+            }
+            return ogFetch(input, init);
+        };
+        var ogXHROpen = XMLHttpRequest.prototype.open;
+        XMLHttpRequest.prototype.open = function(method, url) {
+            var args = Array.prototype.slice.call(arguments);
+            if (typeof url === ""string"") args[1] = url.replace(""vps.kodub.com"", PROXY);
+            return ogXHROpen.apply(this, args);
+        };
+    </script>
+    <meta charset=""utf-8"">
+    <link rel=""preload"" href=""forced_square.woff2"" as=""font"" type=""font/woff2"" crossorigin=""anonymous"" />
+    <link rel=""preload"" href=""images/logo.svg"" as=""image"" type=""image/svg+xml"" crossorigin=""anonymous"" />
+    <link rel=""preload"" href=""images/discord.svg"" as=""image"" type=""image/svg+xml"" crossorigin=""anonymous"" />
+    <link rel=""manifest"" href=""manifest.json"" />
+    <meta name=""viewport"" content=""width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,viewport-fit=cover,user-scalable=no"">
+    <script defer=""defer"" src=""error_screen.bundle.js""></script>
+    <script defer=""defer"" src=""main.bundle.js""></script>
+</head>
+<body>
+    <canvas id=""screen""></canvas>
+    <div id=""ui""></div>
+    <div id=""transition-layer""></div>
+</body>
+</html>","A fast-paced racing game with polygonal tracks.","[""racing""]","Poly Track","https://cdn.jsdelivr.net/gh/freebuisness/covers@main/123.png","other","[]","69f2b128605bb8c2dd67dccc","2026-04-30T01:32:24.832000","2026-05-02T20:24:12.649000","69ee32c21259f0511987060d","elimcoen@gmail.com","false"
+"false","","<!DOCTYPE html>
+<html lang=""en"" class=""no-js"">
+<head>
+	<meta charset=""utf-8"" />
+	<meta http-equiv=""X-UA-Compatible"" content=""IE=edge"" />
+	<title>Dogeminer</title>
+	<meta name=""viewport"" content=""width=device-width, minimum-scale=1, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui, shrink-to-fit=no, height=device-height"" />
+	<link rel=""icon"" href=""https://cdn.jsdelivr.net/gh/Nailington/3kh0-assets@aeb371b7e88542fd5e61eeed9e967a446d84fe1b/DogeMiner/favicon.ico"" type=""image/x-icon"" />
+	<link rel=""stylesheet"" href=""https://cdn.jsdelivr.net/gh/Nailington/3kh0-assets@aeb371b7e88542fd5e61eeed9e967a446d84fe1b/DogeMiner/css/main-v1-0-2-bs.css"" />
+	<link id=""stylesheet"" href=""https://cdn.jsdelivr.net/gh/Nailington/3kh0-assets@aeb371b7e88542fd5e61eeed9e967a446d84fe1b/DogeMiner/css/sunny/jquery-ui-1.10.4.custom.min.css"" rel=""stylesheet"" />
+	<script>
+		var loadtimer = setTimeout(function () {
+			console.log(""Forcing window.onload"");
+			window.dispatchEvent(new Event(""load""));
+		}, 10000);
+	</script>
+	<script src=""https://cdn.jsdelivr.net/gh/Nailington/3kh0-assets@aeb371b7e88542fd5e61eeed9e967a446d84fe1b/js/main.js""></script>
+</head>
+<body style=""background-color: #222222;"">
+	<div id=""fb-root""></div>
+	<div id=""BG"" class=""gpurender animated fadeIn duration-30""></div>
+	<div id=""BG2"" class=""gpurender animated fadeIn duration-30""></div>
+	<div class=""introcontainer"">
+		<div id=""intro-mm"" class=""below-intro animated fadeIn delay-12 duration-15""><div class=""da-container""></div></div>
+	</div>
+	<div id=""introscreen"" class=""animated fadeInDown ui-widget ui-widget-content ui-corner-all tenpadding noselect"">
+		<div class=""first-part"">
+			<div style=""visibility: hidden;"" class=""md-modal md-effect-1"" id=""modal-cookies""><div class=""md-content""><div class=""cookies-long""><h3>Cookies and HTML local storage use</h3><button class=""md-close"">OK</button></div></div></div>
+			<div class=""md-overlay""></div>
+			<h1>Welcome to <img alt=""Dogecoin"" src=""https://cdn.jsdelivr.net/gh/Nailington/3kh0-assets@aeb371b7e88542fd5e61eeed9e967a446d84fe1b/DogeMiner/img/dogecoin-d.png"" style=""height: 70px; width: 70px;"" /> DOGEMINER</h1>
+			<p>The Dogecoin Mining Simulator</p>
+			<div class=""intro-doge level1 level1-doge_mine1u0 noselect animated fadeIn""></div>
+			<div id=""loading-indicator"">
+				<div class=""loadingwrap""><div class=""l"">L</div><div class=""o"">O</div><div class=""a"">A</div><div class=""d"">D</div><div class=""i"">I</div><div class=""n"">N</div><div class=""g"">G</div></div>
+				<div id=""loadingwhat""></div>
+				<script type=""text/javascript"">
+					var dotstr = '...';
+					var loadArr = [""Calibrating pickaxe"",""Adding wow to every sentence"",""Gathering shibes"",""Enslaving kittens"",""Analyzing users browser history"",""Just kidding, Dave"",""Initializing Artificial Intelligence matrix"",""We seem to be stuck in loading. Investigating options"",""Options limited. Stalling for time"",""Manually overriding loading system""];
+					var loadcursor = 0;
+					function nextLoaderText() {
+						var tmp_element = document.getElementById(""loadingwhat"");
+						if (typeof tmp_element != ""undefined"" && tmp_element !== null) {
+							tmp_element.className = ""animated zoomOut duration-5"";
+							setTimeout(function () {
+								tmp_element.innerHTML = loadArr[loadcursor] + dotstr;
+								if (loadcursor++ >= loadArr.length - 1) {
+									var override_button = document.getElementById(""start-playing"");
+									override_button.style.display = ""block""; override_button.style.visibility = ""visible"";
+									tmp_element.innerHTML = ""Stuck in loading, but you can try the button. Godspeed."";
+									tmp_element.className = ""animated zoomIn duration-5"";
+								} else { tmp_element.className = ""animated zoomIn duration-5""; setTimeout(function () { nextLoaderText(); }, 3000 + Math.random() * 2500); }
+							}, 501);
+						}
+					}
+					setTimeout(function () { nextLoaderText(); }, 3000);
+				</script>
+			</div>
+			<button style=""visibility: hidden;"" id=""start-playing"">START PLAYING</button>
+			<div class=""cookies-consent""><strong>Notice:</strong> By playing this game you agree to use of cookies. <em class=""md-trigger"" data-modal=""modal-cookies"">Click here for details.</em></div>
+		</div>
+		<div class=""second-part"" style=""display: none;"">
+			<h2 class=""animated fadeInDown duration-10 delay-15"">This is your target.</h2>
+			<h3 class=""animated fadeInDown duration-10 delay-30"">The moon.</h3>
+			<h3 class=""animated fadeInDown duration-10 delay-45"">You need to go there!</h3>
+			<img class=""intro-rocket animated bounceInUp duration-10 delay-55"" src=""https://cdn.jsdelivr.net/gh/Nailington/3kh0-assets@aeb371b7e88542fd5e61eeed9e967a446d84fe1b/DogeMiner/img/flyingrocket.png"" alt=""Flying Doge rocket"" height=""500"" width=""187"" style=""position: absolute; left: 200px; top: 250px;"" />
+			<button id=""second-part-button"" class=""animated fadeInDown duration-10 delay-65"">GOT IT</button>
+		</div>
+		<div class=""third-part"" style=""display: none;"">
+			<h3>The cost to go to the moon is <strong class=""animated flash delay-15 duration-10"">50,000,000,000 dogecoin.</strong></h3>
+			<h4 class=""animated fadeInDown delay-25"">That's <strong class=""animated flash delay-35 duration-5"">50 billion</strong> dogecoin! Wow, such many.</h4>
+			<div class=""third-part-doge"">
+				<h2 class=""animated fadeInDown delay-40"">To mine dogecoin, just click on Doge</h2>
+				<div class=""wowcontainer""></div>
+				<div id=""tutminer"" class=""level1 level1-doge_mine1u0 noselect animated fadeIn delay-40""></div>
+				<div class=""hand hand-hand1 animated bounceInDown delay-50 duration-10""></div>
+				<button id=""third-part-button"" class=""animated fadeInUp delay-60 duration-10"">GOT IT</button>
+			</div>
+			<div class=""third-part-shop"" style=""display: none;"">
+				<h2>Mine faster by hiring helpers:</h2>
+				<button id=""last-part-button"" class=""animated fadeInUp duration-10 delay-90"">LETS GO</button>
+			</div>
+		</div>
+	</div>
+	<div id=""supermegacontainer"">
+		<div id=""superwrapper"">
+			<div id=""wrapper"" class=""ui-widget ui-widget-content ui-corner-all tenpadding noselect"">
+				<header>
+					<h1 id=""titleheader"" align=""center""><img alt=""Dogecoin"" src=""https://cdn.jsdelivr.net/gh/Nailington/3kh0-assets@aeb371b7e88542fd5e61eeed9e967a446d84fe1b/DogeMiner/img/dogecoin-d.png"" style=""height: 70px; width: 70px;"" /> DOGEMINER</h1>
+					<div id=""progressBar"" class=""pbar"" style=""display: none; position: absolute; left: 100px; top: 10px; width: 600px;""><div></div><span class=""fund"">Moon Fund</span></div>
+					<a href=""javascript:;"" id=""launchbutton"" style=""position: absolute; left: 350px; top: 5px; width: 200px;"" class=""animated pulseAndColor infinite duration-15""></a>
+					<div id=""level-status"" style=""position: absolute; top: 0px; left: 5px; opacity: 0.6; z-index: 2; font-size: 90%;""><small>LOCATION:</small><br /><span id=""location""><font style=""color: #a48032;"">EARTH</font></span><br /><small>TARGET:<br /></small><span id=""nextlocation""><font style=""color: #b2b2b2;"">MOON</font></span><br /><small>LAUNCH STATUS:</small><br /><span id=""progress"">0%</span></div>
+					<div id=""howmanyclicksbro"" class=""small"" style=""position: absolute; right: 5px; top: 5px;""></div>
+					<div id=""timeplayed"" class=""small"" style=""position: absolute; right: 5px; top: 20px;"">00:00:00</div>
+					<div id=""volumeicon"" class=""small"" style=""position: absolute; right: 5px; top: 35px;""><a id=""quickmute"" href=""javascript:;""><span id=""muteicon"" class=""ui-icon ui-icon-volume-on""></span></a></div>
+					<div class=""byline"">The Dogecoin Mining Simulator</div>
+				</header>
+				<div id=""news"" class=""newsline""><span>&nbsp;</span></div>
+				<div id=""random""></div>
+				<div class=""all-helpers"">
+					<div id=""helperwrapper""><div id=""shibesdiv""></div><div id=""kennelsdiv""></div><div id=""kittensdiv""></div></div>
+					<div id=""helperwrapper2""><div id=""rocketsdiv""></div><div id=""basesdiv""></div><div id=""rigsdiv""></div></div>
+				</div>
+				<div class=""coinstext""><div id=""mined""><p>Dogecoins: <strong>0</strong></p></div><div id=""persec""><p>Dogecoins per sec: <span class=""mined-persec"">0</span></p></div></div>
+				<div id=""minerwrapper""><div id=""miner"" class=""level1 level1-doge_mine1u0 noselect""></div></div>
+			</div>
+			<div id=""tabs"" class=""noselect ui-tabs ui-widget ui-widget-content ui-corner-all"">
+				<ul>
+					<li id=""shoptab""><a href=""#tabs-1""><span class=""ui-icon ui-icon-cart""></span>Store</a></li>
+					<li id=""upgradetab""><a href=""#tabs-2""><span class=""ui-icon ui-icon-arrowthick-1-n""></span>Upgrades</a></li>
+					<li id=""achitab""><a href=""#tabs-3""><span class=""ui-icon ui-icon-check""></span>Achievements</a></li>
+					<li><a href=""#tabs-4""><span class=""ui-icon ui-icon-info""></span>Stats</a></li>
+					<li><a href=""#tabs-5""><span class=""ui-icon ui-icon-gear""></span>Settings</a></li>
+				</ul>
+				<div id=""tabs-1""><div><h2 class=""helpheader"">Get help:</h2><div class=""help""><div id=""help1"" class=""helps""><div id=""shibesimage"" class=""level1 level1-shibe0"" style=""position: absolute; left: 210px;""></div><strong><h3 id=""shibesname"" class=""inlineheader"">Mining Shibe</h3><h3 class=""inlineheader""><span id=""shibes""></span></h3><br /><span id=""shibecost""></span></strong><br /><span id=""shibesdesc"" class=""desc"">Very kind shibe to mine much dogecoin.</span><br /><br /><br /><button id=""buyshibe"" class=""shopbutton"">Buy!</button></div><div id=""help2"" class=""helps""><div id=""kennelsimage"" class=""level1 level1-kennels10"" style=""position: absolute; left: 195px; top: -40px;""></div><strong><h3 id=""kennelsname"" class=""inlineheader"">Doge Kennels</h3><h3 class=""inlineheader""><span id=""kennels""></span></h3><br /><span id=""kennelcost""></span></strong><br /><span id=""kennelsdesc"" class=""desc"">Wow very efficiency, entire kennels to mine dogecoin.</span><br /><br /><button id=""buykennel"" class=""shopbutton"">Buy!</button></div><div id=""help3"" class=""helps""><div id=""kittensimage"" class=""level1 level1-kitten10"" style=""position: absolute; left: 140px; top: 80px;""></div><strong><h3 id=""kittensname"" class=""inlineheader"">Slave Kittens</h3><h3 class=""inlineheader""><span id=""kittens""></span></h3><br /><span id=""kittencost""></span></strong><br /><span id=""kittensdesc"" class=""desc"">Kittens to post cute videos to the internet for dogecoin.</span><br /><br /><button id=""buykitten"" class=""shopbutton"">Buy!</button></div><div id=""help4"" class=""helps""><div id=""rocketsimage"" class=""level1 level1-rocket10"" style=""position: absolute; left: 165px; top: 50px; transform: rotate(-49deg);""></div><strong><h3 id=""rocketsname"" class=""inlineheader"">Space Rocket</h3><h3 class=""inlineheader""><span id=""rockets""></span></h3><br /><span id=""rocketcost""></span></strong><br /><span id=""rocketsdesc"" class=""desc"">A rocket to fly to the moon to find more dogecoin.</span><br /><br /><button id=""buyrocket"" class=""shopbutton"">Buy!</button></div><div id=""help5"" class=""helps""><div id=""basesimage"" class=""level1 level1-base10"" style=""position: absolute; left: 110px; top: 85px;""></div><strong><h3 id=""basesname"" class=""inlineheader"">Moon Base</h3><h3 class=""inlineheader""><span id=""bases""></span></h3><br /><span id=""basecost""></span></strong><br /><span id=""basesdesc"" class=""desc"">A base on the moon to extract much dogecoin.</span><br /><br /><button id=""buybase"" class=""shopbutton"">Buy!</button></div><div id=""help6"" class=""helps""><div id=""rigsimage"" class=""level1 level1-rig10"" style=""position: absolute; left: 105px; top: 90px;""></div><strong><h3 id=""rigsname"" class=""inlineheader"">Time Machine Mining Rig</h3><h3 class=""inlineheader""><span id=""rigs""></span></h3><br /><span id=""rigcost""></span></strong><br /><span id=""rigsdesc"" class=""desc"">Mines into the future where infinite dogecoins exist.</span><br /><br /><button id=""buyrig"" class=""shopbutton"">Buy!</button></div></div></div></div>
+				<div id=""tabs-2""><h2 class=""helpheader"">Get upgrades:</h2><div class=""help""><div id=""upgradewrapper""></div></div></div>
+				<div id=""tabs-3""><h2 class=""helpheader"">Achievements:</h2><div class=""help""><div id=""achiwrapper""></div></div></div>
+				<div id=""tabs-4""><h2 class=""helpheader"">Statistics:</h2><div class=""help""><a href=""javascript:;"" id=""stats"">Refresh</a><br /><br /><div id=""statisticswrapper""><p>Achievements unlocked (total): <strong class=""stats-achis""></strong></p><p>Total time played: <strong class=""stats-timeplayed""></strong></p><p>Bonus coins grabbed: <strong class=""stats-bonuscoins""></strong></p><p>Total clicks: <strong class=""stats-clicks""></strong></p></div></div></div>
+				<div id=""tabs-5""><h2 class=""helpheader"">Settings:</h2><div class=""help""><a href=""javascript:;"" id=""restartbutton"">Reset game</a><br /><br /><input id=""music"" type=""checkbox"" checked=""checked"" /><label for=""music"">Music</label><br /><br /><input id=""sounds"" type=""checkbox"" checked /><label for=""sounds"">Toggle All Sounds</label><br /><br /><input id=""sounds2"" type=""checkbox"" checked /><label for=""sounds2"">Toggle Pickaxe Sound</label><br /><br /><input id=""clickeffects"" type=""checkbox"" checked /><label for=""clickeffects"">Toggle Click effects</label><br /><br /><input id=""animations"" type=""checkbox"" checked /><label for=""animations"">Toggle Animations</label><br /><br /><input id=""backgroundanims"" type=""checkbox"" checked /><label for=""backgroundanims"">Toggle Background Switching</label><br /><br /><input id=""achievementswitch"" type=""checkbox"" /><label for=""achievementswitch"">Toggle Achievement Popup</label><br /><br /><a id=""exportsave"" href=""javascript:;"">Export Save</a><br /><br /><a id=""importsave"" href=""javascript:;"">Import Save</a><br /><br /><a id=""switchlevel"" href=""javascript:;"">Switch location</a></div></div>
+			</div>
+			<div id=""achievementwrapper""><div id=""achievementwindow""></div></div>
+		</div>
+		<div id=""secretcontainer"" style=""display: hidden; position: absolute; left: -9999px; top: -9999px;"" class=""noselect""></div>
+	</div>
+	<div id=""extracontainer"" class=""noselect""></div>
+	<div id=""savemodal"" title=""Wow such save function :o)"" class=""doselect"">Hi:)</div>
+	<script src=""https://cdn.jsdelivr.net/gh/Nailington/3kh0-assets@aeb371b7e88542fd5e61eeed9e967a446d84fe1b/DogeMiner/js/plugins.js""></script>
+	<script src=""https://cdn.jsdelivr.net/gh/Nailington/3kh0-assets@aeb371b7e88542fd5e61eeed9e967a446d84fe1b/DogeMiner/js/main.js""></script>
+</body>
+</html>","Mine dogecoins, hire helpers, and fly to the moon in this addictive idle clicker!","[""clicker"",""idle""]","Doge Miner","https://cdn.jsdelivr.net/gh/freebuisness/covers@main/511.png","clicker","[]","69f2b128605bb8c2dd67dcce","2026-04-30T01:32:24.832000","2026-05-02T20:25:36.227000","69ee32c21259f0511987060d","elimcoen@gmail.com","false"
